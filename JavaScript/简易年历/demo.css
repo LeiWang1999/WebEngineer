@@ -1,0 +1,43 @@
+#tab {
+    background-color: gainsboro;
+    width: 372px;
+    margin: auto;
+    padding: 0px;
+    height: 650px;
+}
+#tab ul {
+    margin: 0px;
+    padding: 0px;
+}
+#tab li{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    padding: 0px;
+    color: aliceblue;
+    background-color: slategrey;
+    border: 2px solid;
+    list-style-type: none;
+    float: left;
+}
+
+
+#tab ul h2,p {
+    text-align: center;
+}
+
+#tab .active {
+    background-color: white;
+    color: black;
+}
+
+#tab_text {
+    clear: left;
+    color: black; 
+    width: 80%;
+    height: 120px;
+    margin: 10%;
+    padding: 0px;
+    text-align: center;
+
+} 

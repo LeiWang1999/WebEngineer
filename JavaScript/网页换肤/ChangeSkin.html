@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link id="skinChange" rel="stylesheet" href="cssOne.css" type="text/css">
+    <style>
+        #warnningLogin {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            /* solid 实线 */
+            border: 1px solid black;
+            display: none;
+        }
+
+        #testBlock {
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            /* solid 实线 */
+            border: 1px solid black;
+            display: block;
+        }
+
+        #string {
+            display: block;
+        }
+
+        .inputButton {
+            background-color: aquamarine;
+        }
+
+    </style>
+    <script>
+        function toGreen() {
+            document.getElementById('testBlock').style.width = '200px';
+            document.getElementById('testBlock').style.height = '100px';
+            document.getElementById('testBlock').style.background = 'green';
+        }
+        function toRed() {
+            // 变量的声明
+            var testBlockDiv = document.getElementById('testBlock');
+            testBlockDiv.style.width = '200px';
+            document.getElementById('testBlock').style.height = '100px';
+            document.getElementById('testBlock').style.background = 'red';
+        }
+    </script>
+    <!-- 导入外部js -->
+    <script src="Skin.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标提示框</title>
+</head>
+
+<body>
+    <!-- 第一个工程 鼠标提示框 -->
+    <div id="UserLogin">
+        User Name:<input type="text" name="account">
+        <br>
+        Pass Word:<input type="password" name="password">
+        <br>
+        <input type="checkbox" onmousemove="document.getElementById('warnningLogin').style.display='block';"
+            onmouseout="document.getElementById('warnningLogin').style.display='none';">
+        两周内自动登陆
+        <br>
+    </div>
+    <div>
+        <div>
+            <div id="warnningLogin">
+                为了您的信息安全，请不要在网吧勾选此选项！
+            </div>
+            <div id="testBlock" onmousemove="toGreen()" onmouseout="toRed()">
+                这是一个div块。
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="button" value="皮肤1" onclick="change2SkinOne();">
+        <input type="button" value="皮肤2" onclick="change2SkinTwo();">
+    </div>
+    
+    <div>
+        <p id="string">这是一段话</p>
+        <input class="inputButton" type="button" value="魔法棒" onclick="displayString();">
+    </div>
+    <a href="http://online.njtech.edu.cn">南工在线</a>
+
+</body>
+
+</html>

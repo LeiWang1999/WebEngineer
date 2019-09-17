@@ -1,0 +1,40 @@
+li strong {
+    font-style: italic;
+    font-weight: normal;
+}
+
+strong {
+    color: red;
+}
+
+h2 {
+    color: bisque;
+}
+
+h2 strong {
+    color: blue;
+}
+#redpa {
+    color: red;
+}
+.red {
+    color:blue;
+}
+
+p {
+    background-color: aquamarine;
+    padding: 10px;
+    text-indent: 5em;
+}
+
+body {
+    background-image: url(face.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+div {
+    width: 1000px;
+    white-space: normal;
+}

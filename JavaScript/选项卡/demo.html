@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    #topDiv .active {
+        background-color: antiquewhite;
+    }
+    #topDiv div {
+        height: 200px;
+        width: 200px;
+        background-color: aqua;
+        display: none;
+    }
+    </style>
+    <script>
+        window.onload = function(){
+            var topDiv = document.getElementById('topDiv');
+            var allInput = topDiv.getElementsByTagName('input');
+            var allDiv = topDiv.getElementsByTagName('div');
+            // 给按键加上事件
+            for (let index = 0; index < allInput.length; index++) {
+                const element = allInput[index];
+                const thisDiv = allDiv[index];
+                element.onmousemove = function(){
+                    for (let index = 0; index < allInput.length; index++) {
+                        const element = allInput[index];
+                        const thisDiv = allDiv[index];
+                        element.className = '';
+                        thisDiv.style.display = 'none';
+                    }
+                    element.className = 'active';
+                    thisDiv.style.display ='block';
+                    }
+            }
+            // 
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+</head>
+<body>
+    <div id="topDiv">
+        <input type="button" class="active" value="教育">
+        <input type="button" value="培训">
+        <input type="button" value="招生">
+        <input type="button" value="出国">
+        <div style="display: block">a</div>
+        <div>b</div>
+        <div>c</div>
+        <div>d</div>
+    </div>
+</body>
+</html>

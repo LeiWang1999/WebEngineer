@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="buttonChange.js"></script>
+    <script>
+        window.onload=function(){
+            var opreaDiv = document.getElementById('buttonGreen');
+            var allDiv = document.getElementsByTagName('div');
+
+            function abc() {
+                alert("abc");
+            }
+            opreaDiv.onclick=abc;
+
+            for (let index = 0; index < allDiv.length; index++) {
+                alert(index);
+            }
+        } 
+    </script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 5px solid black;
+            background-color: antiquewhite;
+            float: left;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+</head>
+<body>
+    <input type="button" id="buttonGreen" value="变绿">
+    <input type="button" id="buttonBlue" value="变蓝" onclick="setStyle('backgroundColor', 'blue')">
+    <input type="button" id="buttonRed" value="变红" onclick="changeColor('red')">
+    <br>
+    <div>
+            Hello Hello Hello Hello Hello Hello 
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
