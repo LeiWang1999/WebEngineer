@@ -1,0 +1,15 @@
+#div1 {
+    width: 200px;
+    height: 200px;
+    background-color: antiquewhite;
+    position: absolute;
+    left: -200px;
+}
+#div1 span {
+    width: 20px;
+    height: 70px;
+    background-color: aqua;
+    position: absolute;
+    left: 200px;
+    top:75px;
+}

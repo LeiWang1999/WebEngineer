@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>未命题</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#div1 {
+			height: 200px;
+			width: 150px;
+			background: red;
+			position: absolute;
+			top: 50px;
+			left: -150px;
+		}
+
+		#div2 {
+			height: 50px;
+			width: 20px;
+			background: black;
+			color: white;
+			position: absolute;
+			top: 100px;
+			right: -20px;
+			line-height: 25px;
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			odiv1 = document.getElementById('div1');
+			odiv2 = document.getElementById('div2');
+			var timer = null;
+
+			odiv1.onmouseover = function () {
+				ToMove(div1, 0, 10);
+			}
+
+			odiv1.onmouseout = function () {
+				ToMove(div1, -150, -10);
+			}
+
+			function ToMove(obj, goal, speed) {
+				clearInterval(timer);
+				timer = setInterval(function () {
+					if (obj.offsetLeft == goal) {
+						clearInterval(timer);
+					}
+					else {
+						obj.style.left = obj.offsetLeft + speed + 'px';
+					}
+				}, 30);
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<div id="div1">
+		<div id="div2">分享</div>
+	</div>
+
+</body>
+
+</html>
