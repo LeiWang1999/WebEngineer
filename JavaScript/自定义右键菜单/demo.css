@@ -1,0 +1,17 @@
+li {
+    list-style-type: none;
+}
+ul {
+    padding: 0px;
+}
+
+#clickDiv {
+    background-color: antiquewhite;
+    position: absolute;
+    display: none;
+}
+
+body {
+    width: 2000px;
+    height: 1000px;
+}
