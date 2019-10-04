@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" v-on:click="event('abc', $event)">数值:{{count}}</button>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					count:0
+				},
+				methods:{
+					event: function(str, ev){
+						// alert(str);
+						console.log(ev);
+						this.count = this.count+1;
+					}
+				}
+				
+			});
+		</script>
+	</body>
+</html>
