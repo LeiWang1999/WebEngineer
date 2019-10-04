@@ -7,17 +7,21 @@
 	</head>
 	<body>
 		<div id="app">
-		<p>{{a}} {{b}}</p>
+		<p>{{a}}</p>
 		<!-- 这个a不会被改变 -->
 		
 		</div>
 		<script type="text/javascript">
-			var data = {a:1,b:2};
-			Object.freeze(data);
+			var data = {a:1};
+			// freeze 让变量的改变不会影响到app
+			// Object.freeze(data);
 			var app = new Vue({
 				el:'#app',
 				data:data
 			});
+			app.$watch('a', function(newWord, oldWord){
+				console.log(newWord, oldWord);
+			})
 		</script>
 	</body>
 </html>

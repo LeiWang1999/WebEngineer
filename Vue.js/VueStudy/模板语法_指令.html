@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p v-if="seen">只有if有效，你才能看到我</p>
+			<a v-bind:href="url">这是一个动态的标签</a>
+			<div @click="click1" >
+				<div @click.stop="click2()">
+					这是一个可以被点击的按钮
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					seen:true,
+					url:'http://online.njtech.edu.cn'
+				},
+				methods:{
+					click1: function(){
+						console.log('click1..');
+					},
+					click2: function(){
+						console.log('click2...');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

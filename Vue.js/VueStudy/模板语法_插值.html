@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#red {
+				color: red;
+			}
+
+			#blue {
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p> {{msg}}</p>
+			<div v-bind:id="dynamicId">这一段文字的id可以被动态改变</div>
+			<p>The Next is a span : <p v-html="msg"></p>
+</p>
+			<p>四则运算测试：{{number+1}}</p>
+			<p>三目运算符测试：{{ok? 'yes':'no'}}</p>
+			<p>函数测试：{{word.split('').reverse().join('')}}</p>
+		</div>
+
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: '<span style="color:red">This Shold be red</span>',
+					dynamicId: 'id',
+					number: 10,
+					ok: true,
+					word: 'vue'
+				}
+			})
+		</script>
+	</body>
+</html>
