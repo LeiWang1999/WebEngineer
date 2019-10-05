@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" @click="countClick" >Click++ {{count}}</button>
+			<br>
+			<button-counter title="Princeling"></button-counter>
+			<br>
+			<button-counter></button-counter>			
+		</div>
+		<script type="text/javascript">
+			Vue.component('button-counter', {
+				// props
+				props:['title'],
+				data:function(){
+					return {
+						count: 0
+					}
+				},
+				template: '	<button type="button" @click="ClickToPlus"> {{title}} Click++ {{count}}</button>',
+				methods:{
+					ClickToPlus: function(){
+						console.log(this);
+						this.count++;
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					count: 0
+				},
+				methods: {
+					countClick: function() {
+						this.count++;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
