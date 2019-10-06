@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<h1>让我们享受快乐吧。</h1>
+				<button type="button" id="btn1" class='btn btn-primary'>按钮1</button>
+				<button type="button" id="btn2" class='btn btn-success'>按钮2</button>
+				<button type="button" id="btn3" class='btn btn-info'>按钮3</button>
+				<button type="button" id="btn4" class='btn btn-warning'>按钮4</button>
+			</div>
+
+			<div class="row">
+				<div class="col-3">
+					<div id="panel1" class="panel panel-primary">
+						<div class="panel-heading">
+							#panel1
+						</div>
+						<div class="panel-body">
+							body
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div id="panel2" class="panel panel-primary">
+						<div class="panel-heading">
+							#panel2
+						</div>
+						<div class="panel-body">
+							body
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div id="panel3" class="panel panel-primary">
+						<div class="panel-heading">
+							#panel3
+						</div>
+						<div class="panel-body">
+							body
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div id="panel4" class="panel panel-primary">
+						<div class="panel-heading">
+							#panel4
+						</div>
+						<div class="panel-body">
+							body
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 当文档准备好之后触发的函数
+		// $ 可以帮助获得文档里的元素
+		$(document).ready(function(){
+			var oPanel1 = $('#panel1');
+			oPanel1.hide(300).show(1000);
+			// console.log(oPanel1);
+			// addEvent
+			$('#btn1').on('click', function(){
+				// $('#panel1').toggle();
+				// 各种上升下降的方法
+				$('#panel1').slideToggle();
+			})
+			
+		});
+	</script>
+</html>
