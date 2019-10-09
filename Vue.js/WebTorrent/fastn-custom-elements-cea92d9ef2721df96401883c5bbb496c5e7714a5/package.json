@@ -1,0 +1,16 @@
+{
+  "name": "fastn-custom-elements",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'run `npm run watch` and browse ./example/index.html'",
+    "watch": "watchify -d ./index.js -o ./example/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastn": "^2.12.2",
+    "watchify": "^3.11.1"
+  }
+}
