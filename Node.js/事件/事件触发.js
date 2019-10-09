@@ -7,5 +7,8 @@ MyEmitter.on('someEvent', function (msg) {
     console.log(msg);
 })
 
-MyEmitter.emit('someEvent', 'something happen');
+setInterval(function () {
+    MyEmitter.emit('someEvent', 'something happen');
+}, 1000);
+
 
