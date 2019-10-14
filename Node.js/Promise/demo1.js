@@ -14,7 +14,7 @@ var Pro = function (time, msg) {
     console.log(Pro(1000, '成功返回')
     .then(function(data){
         console.log(data);
-        // 注意到，如果这里是直接return 1 那么下一个then接收到的就是1
+        // 注意到，如果这里是直接return 1, then返回的还是一个Promise对象 那么下一个then接收到的就是1
         // return 1
         // 如果这一返回的是一个Promise对象，那么下一个then接受是resolve的值
         // 但是两者接收到的都是 Promise对象
