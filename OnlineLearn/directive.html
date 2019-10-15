@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+   <div id="app">
+       <span v-hello="color3">{{message}}</span>
+       <button @click="add"> 点击开始加1</button>
+   </div>
+</body>
+<script>
+
+    // directive执行的函数
+    // el : 指令所绑定的元素，可以用来直接操作DOM
+    // binding: 一个对象，包含指令的很多信息
+    // vnode: VUE编译生成的虚拟节点
+    Vue.directive("hello",function(el,binding,vnode){
+       el.style["color"]= binding.value;
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:10,
+            color3:"red"
+        },
+        methods:{
+            add:function(){
+                this.message++;
+            }
+        }
+    })
+</script>
+</html>
