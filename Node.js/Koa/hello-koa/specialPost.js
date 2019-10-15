@@ -13,33 +13,22 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-// add url-route:
-// 此处url中如果出现了冒号，则表明该文本被作为了一个参数
-router.get('/hello/:name', async (ctx, next) => {
-    var url = ctx.request.url;
-    var name = ctx.params.name;
-    console.log('url is ', url)
-    console.log('param is ', ctx.params)
-    ctx.response.body = `<h1>Hello, ${name}!</h1>`;
-});
 
 // 经过测试、发现如果有两个处理同一个url的get，那么只会触发第一个
 router.get('/', async (ctx, next) => {
+    ctx.response.type = 'text/html'
     ctx.response.body = `<h1>Index</h1>
         <form action="/signin" method="post">
             <p>Name: <input name="name" value="koa"></p>
             <p>Password: <input name="password" type="password"></p>
             <p><input type="submit" value="Submit"></p>
         </form>`;
-    console.log('我在后面,我也看看是谁先触发')
 });
 
-router.get('/', async (ctx, next) => {
-    ctx.response.body = '<h1>Index</h1>';
-    console.log('我在最前面,我看看是谁先触发')
-});
 
 router.post('/signin', async (ctx, next) => {
+    console.log(ctx.request)
+
     var
         name = ctx.request.body.name || '',
         password = ctx.request.body.password || '';
@@ -52,10 +41,16 @@ router.post('/signin', async (ctx, next) => {
     }
 });
 
-// add router middleware:
-app.use(router.routes());
+
+
+// 因为 use 是按顺序执行、所以bodyParser中间件要放在routes前面
+// 不然怎么先解码、再读数据呢？
 // add bodyParser:
 app.use(bodyParser());
+
+
+// add router middleware:
+app.use(router.routes());
 
 
 app.listen(3000);
