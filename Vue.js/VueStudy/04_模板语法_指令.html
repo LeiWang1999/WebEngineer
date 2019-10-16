@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>Document</title>
 		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
@@ -14,11 +14,18 @@
 					这是一个可以被点击的按钮
 				</div>
 			</div>
+			<h3>v-once Test</h3>
+			<p>{{message}}</p>
+			<p v-once>{{message}}</p>
+			<p v-pre>{{message}}</p>
+			<!-- v-cloak 在vue解析之前存在，解析之后就会删除该属性 -->
+			<p v-cloak></p>
 		</div>
 		<script type="text/javascript">
 			var vm = new Vue({
 				el:'#app',
 				data:{
+					message:'v-onceValue',
 					seen:true,
 					url:'http://online.njtech.edu.cn'
 				},

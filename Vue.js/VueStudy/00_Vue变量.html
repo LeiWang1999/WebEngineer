@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div id="app">
+		<p>{{message}}</p>
+		<p>{{name}}</p>
+		<ul>
+			<li v-for="item in movie">{{item}}</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: {
+				message: 'Hello Vue.js',
+				name: 'princeling',
+				movie: ['徐嘉怡', '王磊', '小宝宝']
+			}
+		})
+	</script>
+</body>
+
+</html>
