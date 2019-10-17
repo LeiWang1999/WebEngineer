@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+    <style>
+        .colorType {
+            background-color: red;
+        }        
+    </style>
+</head>
+<body>
+    <!-- 作业要求：点击列表内的元素，元素背景变红 -->
+    <div id="app">
+        <h1>{{firstName}} {{lastName}}</h1>
+        <h1>{{getFullName()}}</h1>
+        <h1>{{fullName}}</h1>
+        <h1>{{computedTest}}</h1>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                firstName : 'Wang',
+                lastName : 'Lei'
+            },
+            methods : {
+                getFullName : function(){
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            // 计算属性 指的是 属性 所以取名最好不要出现动词
+            // 在调用的时候会产生缓存，节省开销
+            computed : {
+                fullName : function(){
+                    return this.firstName + ' ' + this.lastName;
+                },
+                computedTest : {
+                    set : function(){
+                        // 一般不用， 所以这个属性我们总是删除，毕竟我们不希望别人来更改我们的属性
+                    },
+                    get : function(){
+                        return 'computedTest'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
