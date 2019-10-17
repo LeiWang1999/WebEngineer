@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+    <style>
+        .colorType {
+            background-color: red;
+        }        
+    </style>
+</head>
+<body>
+    <!-- 作业要求：点击列表内的元素，元素背景变红 -->
+    <div id="app">
+        <ul>
+            <li v-for="(eachName,index) in familyArry" @click="reverseIsColor(index)" :class="{onshow: true ,colorType: isColor[index]}">{{index}} : {{eachName}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                message : 'This is a text',
+                isColor : [true,true,false,true],
+                familyArry : [
+                    'Princeling',
+                    'Neily',
+                    'Baby',
+                    'xujiayi'
+                ]
+            },
+            methods : {
+                reverseIsColor: function(index){
+                    if(this.isColor[index])
+                    this.isColor.splice(index, 1, false); 
+                    else
+                    this.isColor.splice(index, 1, true); 
+
+                 },
+                clickTest : function(index){
+                    console.log(index + ' has been clicked ~');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

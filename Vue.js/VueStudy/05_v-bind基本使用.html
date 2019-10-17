@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+    <style>
+        .colorType {
+            background-color: antiquewhite;
+        }        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 :class="{'colorType' : isColor}">{{message}}</h1>
+        <button @click='reverseIsColor'>这个按钮用来反转</button>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                message : 'This is a text',
+                isColor : true,
+            },
+            methods : {
+                reverseIsColor: function(){
+                    this.isColor = !this.isColor
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
