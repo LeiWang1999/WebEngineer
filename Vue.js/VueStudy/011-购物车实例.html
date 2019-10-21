@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<table border="1" cellspacing="" cellpadding="">
+				<thead>
+					<tr>
+						<th colspan="5">购物车采购</th>
+					</tr>
+					<tr>
+						<th>书名</th>
+						<th>出版日期</th>
+						<th>价格</th>
+						<th>采购数目</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody v-if="totalPrice != 0">
+					<tr v-for="(comDict, index) in commodity">
+						<td>{{comDict.name}}</td>
+						<td>{{comDict.data}}</td>
+						<td>{{comDict.price | showPirce}}</td>
+						<td>
+							<button type="button" @click="addComNum(index)">+</button>
+							{{comDict.num}}
+							<button type="button" @click="subComNum(index)">-</button>
+						</td>
+						<td><button type="button" @click="removeCom(index)">移除</button></td>
+					</tr>
+				</tbody>
+				<tbody v-else>
+					<tr>
+						<td  colspan="5"><h2>购物车为空</h2></td>
+					</tr>
+				</tbody>
+			</table>
+			总价: {{totalPrice | showPirce}}
+		</div>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					commodity: [{
+							name: '<算法导论>',
+							data: '2006-9',
+							price: 85,
+							num: 1
+						},
+						{
+							name: '<Unix编程艺术>',
+							data: '2005-2',
+							price: 59,
+							num: 1
+						}
+					],
+					currentIndex: 0,
+					commodityDisplayFlag: true
+				},
+				computed: {
+					totalPrice: function() {
+						let sum = 0
+						this.commodity.forEach(com => {
+							sum = sum + com.price * com.num
+						})
+						return sum
+					}
+				},
+				methods: {
+					addComNum: function(currentIndex) {
+						this.commodity[currentIndex].num++;
+					},
+					subComNum: function(currentIndex) {
+						if(this.commodity[currentIndex].num > 1)
+						this.commodity[currentIndex].num--
+					},
+					removeCom: function(currentIndex) {
+						this.commodity.splice(currentIndex, 1);
+					}
+				},
+				filters: {
+					showPirce : function(price){
+						return '￥' + price.toFixed(2)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
