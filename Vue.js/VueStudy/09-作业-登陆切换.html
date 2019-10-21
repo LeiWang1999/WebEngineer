@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="vue.js"></script>
+		<title>Document</title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<!-- 作业要求：切换用户输入框 -->
+		<!-- input输入框在切换的时候会被其value会被复用，解决的方案是
+			为每个input标签绑定key.
+		 -->
+		 <!-- v-if 当条件发生变化时，其实是在Dom中创建和删除元素
+			v-show 则是把样式的display变成none
+			所以 最好在仅需要一次的切换中使用if
+			在需要多次切换的时候使用none
+		  -->
+		<div id="app">
+			<div id="loginAccount">
+				<span v-if="loginUserNameFlag">
+				<label for="username">	用户账户 <input type="text" placeholder="username" name="username" id="username" /></label>
+				</span>
+				<span v-else>
+					用户邮箱 <input type="text" name="mail" placeholder="mail" />
+				</span>
+				<button type="button" @click="loginUserNamechangeMod()">切换类型</button>
+			</div>
+			<div id="loginPasswd">
+				用户密码 <input type="password" name="passwd" />
+			</div>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					loginUserNameFlag: true
+				},
+				methods: {
+					loginUserNamechangeMod : function() {
+						this.loginUserNameFlag = !this.loginUserNameFlag
+					}
+				}
+			});
+		</script>
+
+	</body>
+</html>

@@ -15,6 +15,7 @@
 <body>
     <!-- 作业要求：点击列表内的元素，元素背景变红 -->
     <div id="app">
+		<h1>{{title}}</h1>
         <ul>
             <li v-for="(eachName,index) in familyArry" @click="reverseIsColor(index)" :class="{onshow: true ,colorType: isColor[index]}">{{index}} : {{eachName}}</li>
         </ul>
@@ -23,6 +24,7 @@
         var vm = new Vue({
             el : '#app',
             data : {
+				title : 'This is a title',
                 message : 'This is a text',
                 isColor : [true,true,false,true],
                 familyArry : [
@@ -35,10 +37,10 @@
             methods : {
                 reverseIsColor: function(index){
                     if(this.isColor[index])
+					//  不能同索引赋值的方法,因为Vue不会监听,不会自动刷新
                     this.isColor.splice(index, 1, false); 
                     else
                     this.isColor.splice(index, 1, true); 
-
                  },
                 clickTest : function(index){
                     console.log(index + ' has been clicked ~');

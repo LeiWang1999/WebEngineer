@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 官方推荐， 当我们使用v-for时 最好给元素或者组件添加key
+		 目的是为了更好的复用 -->
+		<div id="app">
+			<h1>数组遍历</h1>
+			<ul>
+				<li v-for="(value, index) in names">
+					{{index}} . {{value}}
+				</li>
+			</ul>
+			<h1>对象(字典)遍历</h1>
+			<ul>
+				<li v-for="(value, key, index) in dicts">
+					{{index}} . {{key}} = {{value}}
+				</li>
+			</ul>
+			<h1>use key</h1>
+			<!-- 不要绑定 index key的值需要和原来的元素一一对应 -->
+			<p v-for="(char, index) in letters" :key="char" >{{char}}</p>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					names : ['wanglei', 'xujiayi', 'princeling', 'neily'],
+					dicts : {
+						name : 'wanglei',
+						age : 20,
+						love : 'xujiayi'
+					},
+					letters : ['A', 'B', 'C', 'D', 'E']	
+				}
+			})
+		</script>
+	</body>
+</html>
