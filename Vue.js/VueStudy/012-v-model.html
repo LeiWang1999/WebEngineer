@@ -25,27 +25,45 @@
 			<h2>checkbox实验</h2>
 			<input type="checkbox" name="checkbox" value="香蕉" v-model="checkbox" /> 香蕉
 			<br>
-			<input type="checkbox" name="checkbox" value="苹果" v-model="checkbox2"/> 苹果
+			<input type="checkbox" name="checkbox" value="苹果" v-model="checkbox2" /> 苹果
 			<br>
-			<input type="checkbox" name="checkbox" value="菠萝" v-model="checkbox2"/> 菠萝
+			<input type="checkbox" name="checkbox" value="菠萝" v-model="checkbox2" /> 菠萝
 			<br>
-			<input type="checkbox" name="checkbox" value="草莓" v-model="checkbox2"/> 草莓
+			<input type="checkbox" name="checkbox" value="草莓" v-model="checkbox2" /> 草莓
 			<br>
- 			<input type="checkbox" name="checkbox" value="西瓜" v-model="checkbox2"/> 西瓜
+			<input type="checkbox" name="checkbox" value="西瓜" v-model="checkbox2" /> 西瓜
 			<br>
-			<input type="checkbox" name="checkbox" value="番茄" v-model="checkbox2"/> 番茄
+			<input type="checkbox" name="checkbox" value="番茄" v-model="checkbox2" /> 番茄
 			<br>
 			<h3>让我们来康康checkbox : {{checkbox}}</h3>
 			<h3>让我们来康康checkbox2 : {{checkbox2}}</h3>
+			<h2>slect实验</h2>
+			<select name="slst" v-model="selectbox" >
+				<optgroup label="Ball Game">
+					<option value="篮球">篮球</option>
+					<option value="足球">足球</option>
+					<option value="排球">排球</option>
+					<option value="乒乓球">乒乓球</option>
+				</optgroup>
+			</select>
+			<h3>让我们来康康selectbox : {{selectbox}}</h3>
+			<h2>修饰符实验</h2>
+			<!-- 只有敲回车或者失去焦点才会绑定 -->
+			<input type="text" name="txt" id="txt"  v-model.lazy="lazybox"/>
+			<h2>让我们来康康lazyBox : {{lazybox}}</h2>
+			<!-- 还有两个 number: 绑定的类型转换成number 
+			和 trim：去除输入中多余的空格 作用就补演示了 -->
 		</div>
 		<script type="text/javascript">
 			const vm = new Vue({
-				el:"#app",
-				data:{
-					message : 'hello',
-					sex : '男',
+				el: "#app",
+				data: {
+					message: 'hello',
+					sex: '男',
 					checkbox: true,
-					checkbox2: ['西瓜']
+					checkbox2: ['西瓜'],
+					selectbox: '足球',
+					lazybox : "你好你好"
 				}
 			})
 		</script>
