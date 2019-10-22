@@ -8,18 +8,24 @@
 	<body>
 		<div id="app">
 			<my-cpn></my-cpn>
-			
 		</div>
+		<!-- 模板分离 -->
+		<template id="cpn">
+			<div>
+				<h1>一个伟大的标题</h1>
+				<p>这是一个段落</p>
+			</div>
+		</template>
+		
+		<!-- 还可以用脚本取代template -->
+		<script type="text/x-template" id="cpn1">
+		</script>
+		
 		<script type="text/javascript">
 			// 1. 创建组件构造器
 			// ES6语法 可以使用 `` 来定义字符串 可以保留空格换行之类的
 			const cpnConstructor = Vue.extend({
-				template: `
-				<div>
-					<h1>一个伟大的标题</h1>
-					<p>这是一个段落</p>
-				</div>`
-				
+				template: "#cpn"
 			})
 			
 			const cpnConstructor2 = Vue.extend({
