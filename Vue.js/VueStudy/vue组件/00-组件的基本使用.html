@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<my-cpn></my-cpn>
+			
+		</div>
+		<script type="text/javascript">
+			// 1. 创建组件构造器
+			// ES6语法 可以使用 `` 来定义字符串 可以保留空格换行之类的
+			const cpnConstructor = Vue.extend({
+				template: `
+				<div>
+					<h1>一个伟大的标题</h1>
+					<p>这是一个段落</p>
+				</div>`
+				
+			})
+			
+			const cpnConstructor2 = Vue.extend({
+				template: `
+				<div>
+					<h1>一个大的标题</h1>
+					<p>这是一个段落</p>
+					<cpn></cpn>
+				</div>`,
+				// 这个相当于用宏定义替换,所以在div中cpn是没办法使用的
+				components:{
+					cpn:cpnConstructor
+				}
+			})
+			// 2. 注册组件(全局组建) 可以在多个Vue实例中生效
+			// Vue.component('my-cpn', cpnConstructor)
+			// 怎么注册局部组件？
+			// 在vue的实例下面注册
+			
+			
+			// vue2.x 组建注册的语法糖
+			Vue.component('my-cpn', {
+				template: `
+				<div>
+					<h1>一个大的标题</h1>
+					<p>这是一个段落</p>
+					<cpn></cpn>
+				</div>`,
+				components:{
+					cpn : cpnConstructor2
+				}
+			})
+			
+			
+			// 这个实例其实也是一个组件  根组件
+			const vm = new Vue({
+				el:"#app",
+				components:{
+					// 住的局部组件
+					cpn: cpnConstructor2
+				}
+			})
+			
+			
+		</script>
+	</body>
+</html>
