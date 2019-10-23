@@ -43,9 +43,9 @@
 				},
 				methods : {
 					btnClick : function(item){
-						console.log(item);
+						console.log(item)
 						// 发射一个事件
-						this.$emit('item-click', item);
+						this.$emit('item-click', item)
 					}
 				}
 			}
@@ -56,7 +56,8 @@
 				},
 				methods:{
 					receiveEvent: function(item){
-						console.log('received item');
+						console.log('received item')
+						console.log(item)
 					}
 				}
 			})
