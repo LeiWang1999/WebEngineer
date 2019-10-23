@@ -4,6 +4,12 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#text {
+				width: 12.5rem;
+				height: 12.5rem;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- Vue 提供了两种方法通信 -->
@@ -13,17 +19,27 @@
 			<child-cpn></child-cpn>
 			<!-- 这里不支持驼峰标识 -->
 			<child-cpn v-bind:c-name="name"></child-Cpn>
+			<h1>A next test</h1>
+			<child-cpnb @msg-up="receiveEmit"></child-cpnb>
+			<h1>接下来康康被影响的父级文本: {{fathermsg}}</h1>
 		</div>
+		
 		<template id="cpn">
 			<div>
 				<h1>{{cName}} : {{msg}}</h1>
 			</div>
 		</template>
+		<template id="cpn2">
+			<div>
+				<input type="text" @input="msgUpdate()" name="text" id="text" v-model="msg" />
+			</div>
+		</template>
 		<script type="text/javascript">
 			const vm = new Vue({
 				el: "#app",
-				data:{
-					name: "princeling"
+				data: {
+					name: "princeling",
+					fathermsg: "father msg"
 				},
 				components: {
 					ChildCpn: {
@@ -34,13 +50,35 @@
 						},
 						template: "#cpn",
 						props: {
-							cName : {
+							cName: {
 								type: String,
 								// 验证支持的类型
 								// String\Number\Boolean\Array\Object\Date\Function\Symbol
-								default : "neily"	// 如果这里是一个对象,那么需要返回一个函数
+								default: "neily" // 如果这里是一个对象,那么需要返回一个函数
 							}
 						}
+					},
+					ChildCpnb: {
+						data: function() {
+							return {
+								msg: '请在这里输入影响父级的文本'
+							}
+						},
+						template: "#cpn2",
+						methods: {
+							msgUpdate: function(msg) {
+								console.log('updatemsg event happen')
+								// this.$emit('msgUp', msg)
+								this.$emit('msg-up', msg);
+							}
+						}
+					}
+				},
+				methods:{
+					receiveEmit : function(msg){
+						console.log('receive Emit')
+						console.log(msg)
+						this.fathermsg = msg
 					}
 				}
 			})

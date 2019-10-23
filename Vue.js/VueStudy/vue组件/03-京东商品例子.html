@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 父组件模板 -->
+		<div id="app">
+			<cpn @item-click="receiveEvent"></cpn>
+		</div>
+		<!-- 子组件模板 -->
+		<template id="cpn">
+			<div>
+				<button @click="btnClick(com)" type="button" v-for="(com,index) in commodity" :id="com.id">{{com.name}}</button>
+			</div>
+		</template>
+
+		<script type="text/javascript">
+			const cpn = {
+				template: "#cpn",
+				data: function() {
+					return {
+						commodity: [{
+								id: "hot-recommend",
+								name: "热门推荐"
+							},
+							{
+								id: "phone-digital",
+								name: "手机数码"
+							},
+							{
+								id: "household-appliances",
+								name: "家用家电"
+							},
+							{
+								id: "computer-office",
+								name: "电脑办公"
+							}
+						]
+					}
+				},
+				methods : {
+					btnClick : function(item){
+						console.log(item);
+						// 发射一个事件
+						this.$emit('item-click', item);
+					}
+				}
+			}
+			const vm = new Vue({
+				el: "#app",
+				components: {
+					cpn,
+				},
+				methods:{
+					receiveEvent: function(item){
+						console.log('received item');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
