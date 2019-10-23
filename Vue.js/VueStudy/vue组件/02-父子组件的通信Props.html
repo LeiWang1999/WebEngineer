@@ -6,13 +6,17 @@
 		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+		<!-- Vue 提供了两种方法通信 -->
+		<!-- 1. props -->
+		<!-- 2. 通过事件 -->
 		<div id="app">
 			<child-cpn></child-cpn>
-			<child-cpn v-bind:name="name"></child-Cpn>
+			<!-- 这里不支持驼峰标识 -->
+			<child-cpn v-bind:c-name="name"></child-Cpn>
 		</div>
 		<template id="cpn">
 			<div>
-				<h1>{{name}} : {{msg}}</h1>
+				<h1>{{cName}} : {{msg}}</h1>
 			</div>
 		</template>
 		<script type="text/javascript">
@@ -30,9 +34,11 @@
 						},
 						template: "#cpn",
 						props: {
-							name : {
+							cName : {
 								type: String,
-								default : "neily"
+								// 验证支持的类型
+								// String\Number\Boolean\Array\Object\Date\Function\Symbol
+								default : "neily"	// 如果这里是一个对象,那么需要返回一个函数
 							}
 						}
 					}
