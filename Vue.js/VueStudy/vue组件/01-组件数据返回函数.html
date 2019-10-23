@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo</title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 我们来康康如果返回的是一个常数怎么办？ -->
+			<button-counter></button-counter>
+			<button-counter></button-counter>
+		</div>
+		<template id="cpn">
+			<div>
+				<h1>一个count测试</h1>
+				<h2>一个counter : {{counter}}</h2>
+				<button type="button" @click="counter++">点我+1</button>
+			</div>
+		</template>
+		<script type="text/javascript">
+			var counterObj = {
+					counter : 0
+				}
+
+			// 来一个全局组件
+			Vue.component("button-counter", {
+				template: "#cpn",
+				data: function() {
+					return counterObj
+				},
+			})
+
+			const vm = new Vue({
+				el: "#app",
+
+			})
+		</script>
+	</body>
+</html>

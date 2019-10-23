@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<child-cpn></child-cpn>
+			<child-cpn v-bind:name="name"></child-Cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h1>{{name}} : {{msg}}</h1>
+			</div>
+		</template>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: "#app",
+				data:{
+					name: "princeling"
+				},
+				components: {
+					ChildCpn: {
+						data: function() {
+							return {
+								msg: 'hello'
+							}
+						},
+						template: "#cpn",
+						props: {
+							name : {
+								type: String,
+								default : "neily"
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
