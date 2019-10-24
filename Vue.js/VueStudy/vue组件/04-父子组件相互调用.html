@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="father">
+			<h1>一个child模板</h1>
+			<child ref="one"></child>
+			<child></child>
+			<h1>一个father的模板</h1>
+			<button type="button" @click="showMsg">点击调用showMsg</button>
+			<button type="button" @click="showChildMsg">点击调用showChildMsg</button>
+		</div>
+		<template id="child">
+			<div>
+				<button type="button" @click="showMsg">点击调用showMsg</button>
+				<button type="button" @click="showFatherInfo">点击调用showFatherInfo</button>
+			</div>
+		</template>
+		<script type="text/javascript">
+			// child
+			const child = {
+				template: "#child",
+				data: function() {
+					return {
+						childMsg: "hello i'm child"
+					}
+				},
+				methods: {
+					showMsg: function() {
+						console.log(this.childMsg)
+					},
+					showFatherInfo: function() {
+						console.log(this.$parent)
+					}
+				}
+			}
+
+
+			// faher
+			const vm = new Vue({
+				el: "#father",
+				data: {
+					fatherMsg: "hello i'm father"
+				},
+				methods: {
+					showMsg: function() {
+						console.log(this.fatherMsg);
+					},
+					showChildMsg : function() {
+						console.log(this.$children);
+						console.log(this.$children[0]);
+						console.log(this.$refs.one);
+					}
+				},
+				components: {
+					child
+				}
+			})
+		</script>
+	</body>
+</html>
