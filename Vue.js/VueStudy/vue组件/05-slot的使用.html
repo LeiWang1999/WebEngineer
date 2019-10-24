@@ -9,13 +9,22 @@
 		<div id="father">
 			<child></child>
 			<child><span>a span tag</span></child>
+			<child><button type="button">button</button></child>
+			
+			<h1>slot which have name</h1>
+			<child>
+				<button type="button" slot="before">返回</button>
+				<button type="button" slot="after">搜索</button>
+			</child>
+			
 		</div>
 		<template id="child">
 			<div>
+				<slot name="before"><span>a before slot</span></slot>
 				<h1>a child header level 1</h1>
 				<p>a child para</p>
 				<!-- this button is a default setting -->
-				<slot><button type="button">button</button></slot>
+				<slot name="after"><button type="button">button</button></slot>
 			</div>
 		</template>
 		<script type="text/javascript">
