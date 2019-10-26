@@ -142,6 +142,17 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./src/App.vue":
+/*!*********************!*\
+  !*** ./src/App.vue ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/vue-loader/index.js):\\nTypeError: Cannot read property 'vue' of undefined\\n    at Object.module.exports (D:\\\\EELab\\\\Web\\\\webpack\\\\webpack-vue\\\\node_modules\\\\vue-loader\\\\lib\\\\loader.js:61:18)\");\n\n//# sourceURL=webpack:///./src/App.vue?");
+
+/***/ }),
+
 /***/ "./src/main.js":
 /*!*********************!*\
   !*** ./src/main.js ***!
@@ -150,7 +161,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\nvar _vue2 = _interopRequireDefault(_vue);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar vm = new _vue2.default({\n\tel: \"#app\",\n\ttemplate: \"\\n\\t<div>\\n\\t\\t{{msg}}\\n\\t</div>\\n\\t\",\n\tdata: {\n\t\tmsg: \"hello\"\n\t}\n});\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("\n\nvar _vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\nvar _vue2 = _interopRequireDefault(_vue);\n\nvar _App = __webpack_require__(/*! ./App.vue */ \"./src/App.vue\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 把模板封装成组件然后调用也是可以的\nvar vm = new _vue2.default({\n\tel: \"#app\",\n\t// 如此可以实现不更改index.htm 产生模板效果\n\ttemplate: '<App></App>',\n\tcomponents: {\n\t\tApp: _App2.default\n\t}\n});\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 

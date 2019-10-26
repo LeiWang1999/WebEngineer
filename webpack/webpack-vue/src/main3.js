@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue' 
+import App from './app' 
 
 // 把模板封装成组件然后调用也是可以的
 const vm = new Vue({

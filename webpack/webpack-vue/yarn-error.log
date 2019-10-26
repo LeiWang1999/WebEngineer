@@ -1,0 +1,56 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Princeling\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;D:\;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\xampp\php;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Dev-Cpp\MinGW64\bin\;D:\Xilinx\Vivado\2018.2\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Princeling\AppData\Roaming\nvm;C:\Program Files\nodejs;D:\SoftWare\Matlab\runtime\win64;D:\SoftWare\Matlab\bin;C:\Users\Princeling\Anaconda3;C:\Users\Princeling\Anaconda3\Library\mingw-w64\bin;C:\Users\Princeling\Anaconda3\Library\usr\bin;C:\Users\Princeling\Anaconda3\Library\bin;C:\Users\Princeling\Anaconda3\Scripts;C:\Users\Princeling\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Princeling\AppData\Local\Programs\Fiddler;C:\Users\Princeling\AppData\Local\GitHubDesktop\bin;D:\SoftWare\ModelSIm\win64;C:\Users\Princeling\AppData\Roaming\npm;C:\Program Files\Bandizip\;C:\Users\Princeling\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.16.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: certificate has expired
+      at TLSSocket.onConnectSecure (_tls_wrap.js:1058:34)
+      at TLSSocket.emit (events.js:198:13)
+      at TLSSocket._finishInit (_tls_wrap.js:636:8)
+
+npm manifest: 
+  {
+    "name": "webpack-simple-demo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "css-loader": "^3.2.0",
+      "style-loader": "^1.0.0",
+      "vue": "^2.6.10",
+      "webpack": "^4.41.2",
+      "webpack-dev-server": "^3.9.0"
+    },
+    "devDependencies": {
+      "babel-core": "^6.26.3",
+      "babel-loader": "^7.1.5",
+      "babel-preset-es2015": "^6.24.1",
+      "vue-loader": "^13.0.0",
+      "vue-template-compiler": "^2.6.10",
+      "webpack-cli": "^3.3.9"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "webpack --config=config/webpack.dev.js",
+      "server": "webpack-dev-server --config=config/webpack.dev.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,5 +1,19 @@
 import Vue from 'vue'
-import App from './App.vue' 
+
+
+const App = {
+	template:`
+	<div>
+		{{msg}}
+	</div>
+	`,
+	data: function(){
+		return {
+			msg : 'hello'
+		}
+	}
+}
+
 
 // 把模板封装成组件然后调用也是可以的
 const vm = new Vue({
