@@ -1,4 +1,6 @@
 const path = require("path")
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 module.exports = {
 	mode: 'development',
 	// 入口文件的配置
@@ -37,9 +39,10 @@ module.exports = {
 					},
 				}
 			},
+			// vue loader
 			{
 				test:/\.vue$/,
-				use: ['vue-loader']
+				loader: 'vue-loader'
 			}
 		],
 	},
@@ -47,5 +50,8 @@ module.exports = {
 		alias: {
 			'vue$': 'vue/dist/vue.esm.js'
 		}
-	}
+	},
+	plugins: [
+		new VueLoaderPlugin()
+	]
 }
