@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n//\n//\n//\n//\n//\n//\n//\n\nexports.default = {\n\tname: \"App\",\n\tdata: function data() {\n\t\treturn {\n\t\t\tmsg: 'hello',\n\t\t\tname: 'wanglei'\n\t\t};\n\t}\n};\n\n//# sourceURL=webpack:///./src/App.vue?./node_modules/babel-loader/lib??ref--1!./node_modules/vue-loader/lib??vue-loader-options");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _Cpn = __webpack_require__(/*! ./Cpn.vue */ \"./src/Cpn.vue\");\n\nvar _Cpn2 = _interopRequireDefault(_Cpn);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = {\n\tname: \"App\",\n\tdata: function data() {\n\t\treturn {\n\t\t\tmsg: 'hello',\n\t\t\tname: 'wanglei'\n\t\t};\n\t},\n\tcomponents: {\n\t\tCpn: _Cpn2.default\n\t}\n}; //\n//\n//\n//\n//\n//\n//\n//\n\n//# sourceURL=webpack:///./src/App.vue?./node_modules/babel-loader/lib??ref--1!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -219,7 +219,7 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", [\n    _c(\"h1\", { staticClass: \"title\" }, [_vm._v(\"a App template\")]),\n    _vm._v(\"\\n\\t\" + _vm._s(_vm.msg) + \"\\n\")\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"h1\", { staticClass: \"title\" }, [_vm._v(\"a App template\")]),\n      _vm._v(\"\\n\\t\" + _vm._s(_vm.msg) + \"\\n\\t\"),\n      _c(\"Cpn\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -374,7 +374,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\nvar _vue2 = _interopRequireDefault(_vue);\n\nvar _App = __webpack_require__(/*! ./App.vue */ \"./src/App.vue\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nvar _Cpn = __webpack_require__(/*! ./Cpn.vue */ \"./src/Cpn.vue\");\n\nvar _Cpn2 = _interopRequireDefault(_Cpn);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 把模板封装成组件然后调用也是可以的\nvar vm = new _vue2.default({\n\tel: \"#app\",\n\t// 如此可以实现不更改index.htm 产生模板效果\n\ttemplate: '<div><App></App><Cpn1></Cpn1></div>',\n\tcomponents: {\n\t\tApp: _App2.default,\n\t\tCpn1: _Cpn2.default\n\t}\n});\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("\n\nvar _vue = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\nvar _vue2 = _interopRequireDefault(_vue);\n\nvar _App = __webpack_require__(/*! ./App.vue */ \"./src/App.vue\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// 把模板封装成组件然后调用也是可以的\nvar vm = new _vue2.default({\n\tel: \"#app\",\n\t// 如此可以实现不更改index.htm 产生模板效果\n\ttemplate: '<div><App></App></div>',\n\tcomponents: {\n\t\tApp: _App2.default\n\t}\n});\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 
