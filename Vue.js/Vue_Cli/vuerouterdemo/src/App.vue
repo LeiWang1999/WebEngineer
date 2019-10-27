@@ -10,11 +10,12 @@
     <router-link to="/home" tag="button" active-class="active">首页</router-link>
     <!-- replace属性是把history的跳转方法从push换成replace -->
     <router-link to="/about" replace>关于</router-link>
+    <router-link to="/user" replace>用户</router-link>
     <!-- 告诉渲染的站位 -->
     <router-view></router-view>
-    <br />
-    <button @click="callHome">Home Page</button>
-    <button @click="callAbout">About</button>
+    <!-- <br /> -->
+    <!-- <button @click="callHome">Home Page</button>
+    <button @click="callAbout">About</button> -->
   </div>
 </template>
 
