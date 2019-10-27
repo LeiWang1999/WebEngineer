@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <br />
+    <!-- tag属性渲染成button -->
+    <!-- active-class 可以更改当触发的时候被赋予的class名 -->
+    <!-- 或者在router中加上
+      linkActiveClass:'active'
+    -->
+    <router-link to="/home" tag="button" active-class="active">首页</router-link>
+    <!-- replace属性是把history的跳转方法从push换成replace -->
+    <router-link to="/about" replace>关于</router-link>
+    <!-- 告诉渲染的站位 -->
+    <router-view></router-view>
+    <br />
+    <button @click="callHome">Home Page</button>
+    <button @click="callAbout">About</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  name: "app",
+  components: {},
+  methods: {
+    callHome: function() {
+      // 不能用history.pushxxxx 会绕过router
+      this.$router.push("/home");
+      console.log("callHome");
+    },
+    callAbout: function() {
+      this.$router.push("/about");
+      console.log("callAbout");
+    }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.router-link-active {
+  color: red;
 }
 </style>
