@@ -12,7 +12,7 @@ export default {
     computed : {
         userId() {
             // 拿到当前活跃的路由
-            return this.$route.param.userId
+            return this.$route.params.userId
         }   
     }
 }
