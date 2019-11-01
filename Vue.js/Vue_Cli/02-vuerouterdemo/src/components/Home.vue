@@ -10,6 +10,9 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  created: function(){
+    console.log('Home Created');
+  }
 };
 </script>

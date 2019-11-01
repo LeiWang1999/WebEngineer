@@ -8,4 +8,13 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 
+
+// 全局导航守卫  = 前置钩子
+router.beforeEach((to, from, next) =>{
+  console.log(to);
+  
+  document.title = to.matched[0].meta.title
+  next()
+});
+
 console.log(router);

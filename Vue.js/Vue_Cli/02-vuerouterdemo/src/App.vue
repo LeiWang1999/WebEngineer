@@ -52,6 +52,10 @@ export default {
     callPrint: function() {
       console.log(this.$router);
     }
+  },
+  created: function(){
+    console.log('App created');
+    
   }
 };
 </script>

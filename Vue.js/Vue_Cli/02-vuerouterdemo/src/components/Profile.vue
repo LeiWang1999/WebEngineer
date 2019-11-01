@@ -5,11 +5,21 @@
     <p>{{$route.query.name}}</p>
     <p>{{$route.query.age}}</p>
     <p>{{$route.query.height}}</p>
+    <button @click="callPrint">Click me to print $route</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Profile"
+  name: "Profile",
+  methods: {
+      callPrint : function(){
+          console.log(this.$route);
+      }
+  },
+  created: function(){
+      console.log('Profile created');
+      
+  }
 };
 </script>

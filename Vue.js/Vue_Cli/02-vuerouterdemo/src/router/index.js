@@ -19,10 +19,14 @@ const routes = [
     {
         path: '/home',
         component: Home,
+        // meta 元数据 描述数据的数据
+        meta:{
+            title : 'Home'
+        },
         children: [
             {
                 path: '/',
-                redirect: '/news' 
+                redirect: 'news' 
             },
             {
                 path: 'news',
@@ -36,10 +40,16 @@ const routes = [
     },
     {
         path: '/about',
+        meta: {
+            title : 'About'
+        },
         component: About
     },
     {
         path: '/user/:userId',
+        meta: {
+            title: 'User'
+        },
         component: User
         // componenf: () => import("./components/User.vue") 这样写可以实现路由懒加载
     },
