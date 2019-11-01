@@ -24,10 +24,10 @@ const routes = [
             title : 'Home'
         },
         children: [
-            {
-                path: '/',
-                redirect: 'news' 
-            },
+            // {
+            //     path: '/',
+            //     redirect: 'news' 
+            // },
             {
                 path: 'news',
                 component: News
