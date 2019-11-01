@@ -6,25 +6,37 @@
     active-class 可以更改当触发的时候被赋予的class名
     或者在router中加上
       linkActiveClass:'active' -->
-    <router-link to="/home" tag="button" active-class="active">首页</router-link>
+    <router-link to="/home" tag="button" active-class="active">首页</router-link> 
     <!-- replace属性是把history的跳转方法从push换成replace -->
-    <router-link to="/about" replace>关于</router-link>
-    <router-link :to="'/user/'+userId" replace>用户</router-link>
+    <router-link to="/about" replace>关于</router-link> 
+    <router-link :to="'/user/'+userId" replace>用户</router-link> 
+    <router-link :to="ProfileInfo">配置</router-link>
     <!-- 告诉渲染的站位 -->
     <router-view></router-view>
     <br />
     <button @click="callHome">Home Page</button>
-    <button @click="callAbout">About</button> -->
+    <button @click="callAbout">About</button>
+    <br />
+    <button @click="callPrint">Click Me to print $router</button>
   </div>
 </template>
 
 <script>
+import { log } from 'util';
 export default {
   name: "app",
   components: {},
   data() {
     return {
-      userId : 'princeling'
+      userId : 'princeling',
+      ProfileInfo : {
+        path: '/profile',
+        query: {
+          name : 'princeling',
+          age : 20,
+          height: 175
+        }
+      }
     }
   },
   methods: {
@@ -36,6 +48,9 @@ export default {
     callAbout: function() {
       this.$router.push("/about");
       console.log("callAbout");
+    },
+    callPrint: function() {
+      console.log(this.$router);
     }
   }
 };

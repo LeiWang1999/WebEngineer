@@ -6,6 +6,7 @@ import About from "../components/About.vue"
 import User from "../components/User.vue"
 import News from "../components/HomeCpn/News.vue"
 import Message from "../components/HomeCpn/Message.vue"
+import Profile from "../components/Profile.vue"
 // 1.通过Vue.use(插件),安装插件
 Vue.use(VueRouter)
 
@@ -41,6 +42,10 @@ const routes = [
         path: '/user/:userId',
         component: User
         // componenf: () => import("./components/User.vue") 这样写可以实现路由懒加载
+    },
+    {
+        path: '/profile',
+        component: Profile
     }
 ]
 
