@@ -26,6 +26,7 @@ const routes = [
     {
         path: '/user/:userId',
         component: User
+        // componenf: () => import("./components/User.vue") 这样写可以实现路由懒加载
     }
 ]
 
