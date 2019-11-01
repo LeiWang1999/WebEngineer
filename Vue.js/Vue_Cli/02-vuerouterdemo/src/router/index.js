@@ -4,7 +4,8 @@ import Vue from "vue"
 import Home from "../components/Home.vue"
 import About from "../components/About.vue"
 import User from "../components/User.vue"
-
+import News from "../components/HomeCpn/News.vue"
+import Message from "../components/HomeCpn/Message.vue"
 // 1.通过Vue.use(插件),安装插件
 Vue.use(VueRouter)
 
@@ -12,12 +13,25 @@ const routes = [
     {
         path:'/',
         // 把path重定向到/home
-        redirect:'/home',
-        component: Home
+        redirect:'/home'
     },
     {
         path: '/home',
-        component: Home
+        component: Home,
+        children: [
+            {
+                path: '/',
+                redirect: '/news' 
+            },
+            {
+                path: 'news',
+                component: News
+            },
+            {
+                path: 'message',
+                component: Message
+            }
+        ]
     },
     {
         path: '/about',

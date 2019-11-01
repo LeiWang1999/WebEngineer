@@ -2,11 +2,10 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <br />
-    <!-- tag属性渲染成button -->
-    <!-- active-class 可以更改当触发的时候被赋予的class名 -->
-    <!-- 或者在router中加上
-      linkActiveClass:'active'
-    -->
+    <!-- tag属性渲染成button
+    active-class 可以更改当触发的时候被赋予的class名
+    或者在router中加上
+      linkActiveClass:'active' -->
     <router-link to="/home" tag="button" active-class="active">首页</router-link>
     <!-- replace属性是把history的跳转方法从push换成replace -->
     <router-link to="/about" replace>关于</router-link>
@@ -15,7 +14,7 @@
     <router-view></router-view>
     <br />
     <button @click="callHome">Home Page</button>
-    <button @click="callAbout">About</button>
+    <button @click="callAbout">About</button> -->
   </div>
 </template>
 
