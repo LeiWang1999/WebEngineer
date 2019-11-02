@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-bar-item">
+    <div class="tab-bar-item" @click="routeTransfer">
         <slot name="item-icon"></slot>
         <slot name="item-text"></slot>
     </div>
@@ -8,6 +8,15 @@
 <script>
 export default {
     name : 'TabBarItem',
+    props: {
+        link : String
+    },
+    methods : {
+        routeTransfer(){
+            console.log('click happen ');
+            this.$router.push(this.link)
+        }
+    }
 }
 </script>
 
