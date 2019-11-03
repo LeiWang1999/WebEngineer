@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <h1>This is a counter from App</h1>
-    <p>This is a counter : {{counter}}</p>
+    <p>This is a counter : {{$store.state.counter}}</p>
     <button @click="callAdd">click this button to add</button>
     <br />
     <button @click="callSub">click this button to sub</button>
     <br />
-    <hello-vue-x :counter="counter"></hello-vue-x>
+    <hello-vue-x></hello-vue-x>
   </div>
 </template>
 
@@ -19,15 +19,17 @@ export default {
   },
   data: function() {
     return {
-      counter: 10
     };
   },
   methods: {
     callAdd(){
-      this.counter++;
+      // this.counter++;
+      // this.$store.state.counter++
+      this.$store.commit('increment')
     },
     callSub(){
-      this.counter--;
+      // this.$store.state.counter--
+      this.$store.commit('decrement')
     }
   }
 };
