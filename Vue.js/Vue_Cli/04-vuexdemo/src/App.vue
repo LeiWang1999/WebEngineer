@@ -2,10 +2,12 @@
   <div id="app">
     <h1>This is a counter from App</h1>
     <p>This is a counter : {{$store.state.counter}}</p>
-    <button @click="callAdd">click this button to add</button>
+    <button @click="callAddMore(2)">click this button to add</button>
     <br />
     <button @click="callSub">click this button to sub</button>
     <br />
+    <h2>Show getter methods from counter</h2>
+    <p>This ia a powerCounter: {{$store.getters.powerCounter}}</p>
     <hello-vue-x></hello-vue-x>
   </div>
 </template>
@@ -30,6 +32,9 @@ export default {
     callSub(){
       // this.$store.state.counter--
       this.$store.commit('decrement')
+    },
+    callAddMore(num){
+      this.$store.commit('increment', num)
     }
   }
 };
