@@ -27,7 +27,13 @@ export default {
     callAdd(){
       // this.counter++;
       // this.$store.state.counter++
-      this.$store.commit('increment')
+      // mutations的另一种传参方式
+      this.$store.commit({
+        type: 'increment',
+        // 这样那边接受的就是一个对象
+        num : 1
+        
+      })
     },
     callSub(){
       // this.$store.state.counter--

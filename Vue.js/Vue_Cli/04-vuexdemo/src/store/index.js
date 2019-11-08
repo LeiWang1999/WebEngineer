@@ -11,6 +11,7 @@ export default new Vuex.Store({
   },
   mutations: {
     // define methods
+    // 为了devtools能更好的捕获快照，所以这边要是同步函数
     increment(state, num){
       state.counter = state.counter + num
     },
@@ -20,6 +21,12 @@ export default new Vuex.Store({
   },
   actions: {
     // 做一些异步操作 
+    aUpdateInfo(context){
+      // 自动传入上下文 
+      setTimeout(()=>{
+        context.commit('increment');
+      },1000);
+    }
   },
   modules: {
   },
