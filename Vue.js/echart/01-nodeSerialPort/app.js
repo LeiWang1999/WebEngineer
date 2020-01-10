@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var SerialPort = require('serialport')
 //Opening a Port
 var serialPort = new SerialPort('COM6', {
@@ -30,3 +31,24 @@ SerialPort.list(function (error, ports) {
         console.log(port.manufacturer);
     });
 })
+=======
+const Koa = require('koa')
+const cors = require('koa2-cors')
+const routes = require('./src/routes')
+const config = require('./src/config')
+const app = new Koa()
+
+app.use(
+    cors({
+        origin() {
+            return config.siteUrl
+        },
+        credentials: true
+    })
+)
+
+app.use(routes())
+app.listen(3000, () => {
+    console.log(`app started at port 3000!`)
+})  
+>>>>>>> 2676f21323e7d14e289a1287d717586a78770867
