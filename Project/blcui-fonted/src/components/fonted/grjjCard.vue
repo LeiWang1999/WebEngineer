@@ -1,6 +1,5 @@
 <template>
   <v-card>
-    <v-card-media  height="200px">
       <v-container fill-height fluid>
         <v-layout fill-height>
           <v-flex xs12 align-end flexbox>
@@ -8,7 +7,6 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-card-media>
     <v-card-title>
       <v-container>
         <v-layout column align-center>

@@ -1,42 +1,33 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
-
-Vue.use(VueRouter)
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Index from '@/views/fonted/Index.vue';
+import Login from '@/components/back/Login.vue'
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'dashboard',
-    component: Dashboard
+    path: "/",
+    redirect: "dashboard",
+    component: Index,
+    children:[
+      {path: 'dashboard', name: 'dashboard', component:  () =>import("../views/fonted/Dashboard.vue")},
+      {path: 'jqdt', name: 'jqdt', component:  () =>import("../views/fonted/Jqdt.vue")},
+      {path: 'cbzz', name: 'cbzz', component:  () =>import("../views/fonted/Cbzz.vue")},
+      {path: 'jszl', name: 'jszl', component:  () =>import("../views/fonted/Jszl.vue")},
+      {path: 'zlxz', name: 'zlxz', component:  () =>import("../views/fonted/Zlxz.vue")},
+      {path: 'yhlt', name: 'yhlt', component:  () =>import("../views/fonted/Yhlt.vue")}
+    ]
   },
   {
-    path: '/projects',
-    name: 'projects',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Projects.vue')
-  },
-  {
-    path: '/team',
-    name: 'team',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Team.vue')
-  },
-  {
-    path: '/rzqk',
-    name: 'rzqk',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Rzqk.vue')
+    path: "/login",
+    component: Login
   }
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

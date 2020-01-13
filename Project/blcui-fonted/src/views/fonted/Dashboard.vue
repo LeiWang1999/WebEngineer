@@ -28,12 +28,12 @@
 
 <script>
 // @ is an alias to /src
-import RsxtCard from "@/components/rsxtCard.vue";
-import JqdtCard from "@/components/jqdtCard.vue";
-import GrjjCard from "@/components/grjjCard.vue";
-import CbzzCard from "@/components/cbzzCard.vue";
-import JszlCard from "@/components/jszlCard.vue";
-import ZlxzCard from "@/components/zlxzCard.vue";
+import RsxtCard from "@/components/fonted/rsxtCard.vue";
+import JqdtCard from "@/components/fonted/jqdtCard.vue";
+import GrjjCard from "@/components/fonted/grjjCard.vue";
+import CbzzCard from "@/components/fonted/cbzzCard.vue";
+import JszlCard from "@/components/fonted/jszlCard.vue";
+import ZlxzCard from "@/components/fonted/zlxzCard.vue";
 export default {
   name: "home",
   components: {

@@ -8,9 +8,7 @@
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">人生信条</v-list-item-title>
         <v-list-item v-for="(text,i) in texts" :key="i">
-          <v-list-tile-content small>
             <span>{{text}}</span>
-          </v-list-tile-content>
         </v-list-item>
       </v-list-item-content>
     </v-list-item>

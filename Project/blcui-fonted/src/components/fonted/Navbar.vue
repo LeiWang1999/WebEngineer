@@ -1,12 +1,10 @@
 <template>
   <nav>
-    <v-toolbar app class="blue" dark>
-      <v-toolbal-title class="text-uppercase black--text">
+    <v-app-bar app class="blue" dark>
         <v-btn text router to="/">
           <span class="font-weight-light">blcui</span>
           <span>的个人主页</span>
         </v-btn>
-      </v-toolbal-title>
       <v-spacer>
         <v-container grid-list-xs>
           <v-row no-gutters>
@@ -16,17 +14,16 @@
           </v-row>
         </v-container>
       </v-spacer>
-      <v-btn text small class="blue" @click="startDrawer">
+      <v-btn text small router to="/login" class="blue" @click="startDrawer">
         <v-icon>mdi-account</v-icon>
       </v-btn>
       <v-btn text color="black">
         <v-icon>mdi-email</v-icon>
         <span>Email me</span>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
     <v-navigation-drawer v-model="drawer" app class="primary">
       <v-card class="primary" flat>
-        <v-card-media class="white--text" height="200px">
           <v-container fill-height fluid>
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>
@@ -34,7 +31,6 @@
               </v-flex>
             </v-layout>
           </v-container>
-        </v-card-media>
         <v-card-title>
           <v-container fill-height>
             <v-layout column="" fill-height align-center>
@@ -64,10 +60,10 @@ export default {
     return {
       drawer: false,
       links: [
-        { text: "近期动态", route: "/grjj" },
-        { text: "出版专著", route: "/rzqk" },
-        { text: "技术专栏", route: "/xspj" },
-        { text: "资料下载", route: "/cjcx" },
+        { text: "近期动态", route: "/jqdt" },
+        { text: "出版专著", route: "/cbzz" },
+        { text: "技术专栏", route: "/jszl" },
+        { text: "资料下载", route: "/zlxz" },
         { text: "用户论坛", route: "/yhlt" }
       ],
       linkdemo: [

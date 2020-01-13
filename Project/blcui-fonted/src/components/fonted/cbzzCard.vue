@@ -10,15 +10,13 @@
       </v-card-actions>
     </v-card-title>
     <v-divider></v-divider>
-    <v-list-itern-group v-model="books">
-      <v-list-item v-for="(eachbook, i) in books" :key="i">
+      <v-list-item v-model="books" v-for="(eachbook, i) in books" :key="i">
         <v-list-item-content>
             <v-card-text small align="center"> 
               {{eachbook.title}}
             </v-card-text>
         </v-list-item-content>
       </v-list-item>
-    </v-list-itern-group>
   </v-card>
 </template>
 

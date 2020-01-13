@@ -10,8 +10,7 @@
       </v-card-actions>
     </v-card-title>
     <v-divider></v-divider>
-    <v-list-itern-group v-model="news">
-      <v-list-item v-for="(eachnew, i) in news" :key="i">
+      <v-list-item v-model="news" v-for="(eachnew, i) in news" :key="i">
         <v-list-item-content>
           <v-card-title primary-title small>{{eachnew.time}}</v-card-title>
           <v-card-actions>
@@ -21,7 +20,6 @@
           </v-card-actions>
         </v-list-item-content>
       </v-list-item>
-    </v-list-itern-group>
   </v-card>
 </template>
 
