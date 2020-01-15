@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const BASE_URL = "https://www.tianqiapi.com/api"
+const BASE_URL = "http://localhost:8088/api"
 const request = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000,
+  timeout: 5000,
 })
 
 export default request

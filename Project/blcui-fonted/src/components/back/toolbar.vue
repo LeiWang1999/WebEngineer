@@ -8,7 +8,7 @@
         app
     >
         <v-toolbar-title style="width: 260px">
-            <span class="toolbar-title ml-3 mr-3 white--text">Wanglei个人博客<span class="white--text">管理</span></span>
+            <span class="toolbar-title ml-3 mr-3 white--text">Lei的个人网站<span class="white--text">管理</span></span>
 
             <v-app-bar-nav-icon @click.native="updateDrawer"></v-app-bar-nav-icon>
         </v-toolbar-title>

@@ -7,9 +7,7 @@
     <v-content>
       <Tab />
       <v-container fluid grid-list-xl>
-        <keep-alive>
           <router-view></router-view>
-        </keep-alive>
       </v-container>
     </v-content>
 
@@ -28,7 +26,7 @@
         v-show="backTopShow"
         @click="$vuetify.goTo(0)"
       >
-        <v-icon>keyboard_arrow_up</v-icon>
+        <v-icon> mdi-chevron-up</v-icon>
       </v-btn>
     </v-fab-transition>
   </v-app>

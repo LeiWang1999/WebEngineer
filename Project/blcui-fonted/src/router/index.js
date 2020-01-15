@@ -69,6 +69,38 @@ const routes = [
         meta: {
           title: "选项卡"
         }
+      },
+      {
+        path: "editdemo",
+        name: "EditDemo",
+        component: () => import("@/views/back/EditDemo"),
+        meta: {
+          title: "编辑测试"
+        }
+      },
+      {
+        path: "jqdt",
+        name: "jqdtlist",
+        component: () => import("@/views/back/jqdt"),
+        meta: {
+          title: "近期动态"
+        }
+      },
+      {
+        path: "jqdtedit",
+        name: "jqdtedit",
+        component: () => import("@/views/back/jqdtEdit"),
+        meta: {
+          title: "近期动态-新增"
+        }
+      },
+      {
+        path: "jqdtedit/:id",
+        name: "jqdtupdate",
+        component: () => import("@/views/back/jqdtEdit"),
+        meta: {
+          title: "近期动态-编辑"
+        }
       }
     ]
   },
@@ -95,7 +127,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 });
