@@ -101,6 +101,86 @@ const routes = [
         meta: {
           title: "近期动态-编辑"
         }
+      },
+      {
+        path: "grjj",
+        name: "grjjadmin",
+        component: () => import("@/views/back/grjj"),
+        meta: {
+          title: "个人简介"
+        }
+      },
+      {
+        path: "cbzz",
+        name: "cbzzlist",
+        component: () => import("@/views/back/cbzz"),
+        meta: {
+          title: "出版专著"
+        }
+      },
+      {
+        path: "cbzzedit",
+        name: "cbzzedit",
+        component: () => import("@/views/back/cbzzEdit"),
+        meta: {
+          title: "出版专著-新增"
+        }
+      },
+      {
+        path: "cbzzedit/:id",
+        name: "cbzzupdate",
+        component: () => import("@/views/back/cbzzEdit"),
+        meta: {
+          title: "出版专著-编辑"
+        }
+      },
+      {
+        path: "jszl",
+        name: "jszllist",
+        component: () => import("@/views/back/jszl"),
+        meta: {
+          title: "技术专栏"
+        }
+      },
+      {
+        path: "jszledit",
+        name: "jszledit",
+        component: () => import("@/views/back/jszlEdit"),
+        meta: {
+          title: "技术专栏-新增"
+        }
+      },
+      {
+        path: "jszledit/:id",
+        name: "jszlupdate",
+        component: () => import("@/views/back/jszlEdit"),
+        meta: {
+          title: "技术专栏-编辑"
+        }
+      },
+      {
+        path: "zlxz",
+        name: "zlxzlist",
+        component: () => import("@/views/back/zlxz"),
+        meta: {
+          title: "资料下载"
+        }
+      },
+      {
+        path: "zlxzedit",
+        name: "zlxzedit",
+        component: () => import("@/views/back/zlxzEdit"),
+        meta: {
+          title: "资料下载-新增"
+        }
+      },
+      {
+        path: "zlxzedit/:id",
+        name: "zlxzupdate",
+        component: () => import("@/views/back/zlxzEdit"),
+        meta: {
+          title: "资料下载-编辑"
+        }
       }
     ]
   },
@@ -133,9 +213,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  window.console.log(to.name, from.name);
   if (to.name == "Login") {
-    window.console.log(localStorage.getItem("accessToken"));
     if (localStorage.getItem("accessToken")) {
       next(from.path);
     } else {

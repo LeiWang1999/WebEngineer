@@ -8,12 +8,12 @@ const db = mongoose.connection;
 db.once('error',() => console.log('Mongo connection error'));
 db.once('open',() => console.log('Mongo connection successed'));
 
-//user
+//用户
 const userSchema = new mongoose.Schema({
     account: String,
     password: String,
     nickname: String,
-    isadmin: Boolean,//1管理员，2游客
+    isadmin: Boolean,
     token: String,
 })
 //文章
@@ -23,23 +23,40 @@ const articleSchema = new mongoose.Schema({
     gist: String,
     content: String,
 })
-//demo
-const demoSchema = new mongoose.Schema({
-    title: String,
-    date: String,
-    file: String,
-    pic: String,
+//个人简介
+const grjjSchema = new mongoose.Schema({
+    content:String,
+    updatetime:String
+})
+//出版专著
+const booksSchema = new mongoose.Schema({
+    name: String,
     gist: String,
+    buylink: String,
+    updatetime: String,
+})
+//技术专栏
+const techSchema = new mongoose.Schema({
+    title: String,
+    gist: String,
+    videolink: String,
+    updatetime: String,
+})
+//技术专栏
+const techSchema = new mongoose.Schema({
+    title: String,
+    gist: String,
+    videolink: String,
+    updatetime: String,
 })
 /************** 定义模型Model **************/
-// const Models = {
-//     Login : mongoose.model('Login',loginSchema)
-// }
 
 const Models = {
     User: mongoose.model('User', userSchema, 'users'),
     Jqdt: mongoose.model('Jqdt', articleSchema, 'jqdt'),
-    Demo: mongoose.model('Demo', demoSchema)
+    Grjj: mongoose.model('Grjj', grjjSchema, 'grjj'),
+    Cbzz: mongoose.model('Cbzz', booksSchema, 'cbzz'),
+    Jszl: mongoose.model('Jszl', techSchema, 'jszl')
 }
 
 module.exports = Models;

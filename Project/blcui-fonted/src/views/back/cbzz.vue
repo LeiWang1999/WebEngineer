@@ -4,11 +4,8 @@
       <v-dialog v-model="dialog" width="500">
         <v-card>
           <v-card-title primary-title big class="red--text">提示</v-card-title>
-
           <v-card-text big class="black--text">删除不可撤销，确定删除？</v-card-text>
-
           <v-divider></v-divider>
-
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="red" text @click="handleDelete">确定</v-btn>
@@ -17,7 +14,7 @@
         </v-card>
       </v-dialog>
     </div>
-    <v-btn dark color="orange" @click="handleAdd">
+    <v-btn dark color="purple" @click="handleAdd">
       <v-icon>mdi-plus</v-icon>
       <span>点我新增</span>
       <v-icon>mdi-plus</v-icon>
@@ -26,19 +23,19 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-center">标题</th>
-            <th class="text-center">简介</th>
-            <th class="text-center">视频链接</th>
+            <th class="text-center">书名</th>
+            <th class="text-center">摘要</th>
+            <th class="text-center">购买链接</th>
             <th class="text-center">操作</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,i) in news" :key="i" class="text-center">
-            <td>{{ item.title }}</td>
+          <tr v-for="(item,i) in books" :key="i" class="text-center">
+            <td>{{ item.name }}</td>
             <td>
               {{ item.gist }}
             </td>
-            <td>{{ item.videolink }}</td>
+            <td>{{ item.buylink }}</td>
             <td>
               <v-btn text color="primary" @click="handleEdit(i)">编辑</v-btn>
               <v-btn text color="red" @click="showDialog(i)">删除</v-btn>
@@ -52,10 +49,10 @@
 
 <script>
 export default {
-  name: "jszl",
+  name: "cbzz",
   data() {
     return {
-      news: [],
+      books: [],
       dialog: false,
       curIndex: 0
     };
@@ -63,10 +60,10 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/jszl/articalList"
+      url: "/cbzz/bookList"
     })
       .then(res => {
-        this.news = res.data.message;
+        this.books = res.data.message;
       })
       .catch(err => window.console.log(err));
   },
@@ -74,28 +71,28 @@ export default {
     fetchData() {
       this.request({
         method: "POST",
-        url: "/jszl/articalList"
+        url: "/cbzz/bookList"
       })
         .then(res => {
-          this.news = res.data.message;
+          this.books = res.data.message;
         })
         .catch(err => window.console.log(err));
     },
     handleAdd() {
-      this.$router.push("/admin/jszledit");
+      this.$router.push("/admin/cbzzedit");
     },
     handleEdit(index) {
-      let articleId = this.news[index]["_id"];
-      this.$router.push("/admin/jszledit/" + articleId);
+      let bookId = this.books[index]["_id"];
+      this.$router.push("/admin/cbzzedit/" + bookId);
     },
     handleDelete() {
       this.dialog = false;
       let index = this.curIndex;
-      let articleId = this.news[index]["_id"];
+      let bookId = this.books[index]["_id"];
       this.request({
         method: "POST",
-        url: "/jszl/deleteArticle",
-        data: { articleId: articleId }
+        url: "/cbzz/deleteBook",
+        data: { bookId: bookId }
       })
         .then(res => {
           if (res.data.success == true) {

@@ -6,12 +6,18 @@
       <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
     <v-subheader class="black--text">标题</v-subheader>
-    <v-text-field v-model="title" label="请输入文章标题" :rules="titlerules" hide-details="auto"></v-text-field>
-    <v-subheader class="black--text">简介</v-subheader>
-    <v-textarea filled name="input-7-4" label="请输入文章简介" v-model="gist" :rules="gistrules"></v-textarea>
+    <v-text-field v-model="title" label="请输入视频标题" :rules="titlerules" hide-details="auto"></v-text-field>
+    <v-subheader class="black--text">请输入视频简介</v-subheader>
+     <v-textarea
+          filled
+          name="input-7-4"
+          label="摘要"
+          v-model="gist"
+          :rules="gistrules"
+         ></v-textarea>
     <v-divider></v-divider>
-    <mavon-editor v-model="content" />
-    <br />
+        <v-subheader class="black--text">视频链接</v-subheader>
+    <v-text-field v-model="videolink" label="请输入视频链接" hide-details="auto"></v-text-field>
     <v-divider></v-divider>
     <br />
     <v-btn :disabled="!isSaveDisable" block class="pink" @click="saveArticle">点我保存</v-btn>
@@ -20,16 +26,16 @@
 
 <script>
 export default {
-  name: "jqdtedit",
+  name: "jszledit",
   data() {
     return {
       snackbar: false,
       warnningText: "",
       alertValue: false,
-      date: "",
+      updatetime: "",
       title: "",
       gist: "",
-      content: "",
+      videolink: "",
       titleRule1State: false,
       titleRule2State: false,
       gistRule1State: false,
@@ -80,14 +86,13 @@ export default {
     if (this.$route.params.id) {
       // when article exist
       this.request
-        .get("/jqdt/articleDetail/" + this.$route.params.id)
+        .get("/jszl/articleDetail/" + this.$route.params.id)
         .then(res => {
           let article = res.data.info;
-          window.console.log(res.data);
           this.title = article.title;
-          this.date = article.date;
+          this.updatetime = article.updatetime;
           this.gist = article.gist;
-          this.content = article.content;
+          this.videolink = article.videolink;
         });
     }
   },
@@ -106,7 +111,8 @@ export default {
       if (hh < 10) hh = "0" + hh;
       if (mm < 10) mm = "0" + mm;
       if (ss < 10) ss = "0" + ss;
-      this.date = y + "-" + m + "-" + d + " " + hh + ":" + mm + ":" + ss;
+      let date = y + "-" + m + "-" + d + " " + hh + ":" + mm + ":" + ss;
+      return date
     },
     saveArticle() {
       if (this.title.length === 0) {
@@ -119,8 +125,8 @@ export default {
         this.snackbar = true;
         return;
       }
-      if (this.content.length === 0) {
-        this.warnningText = "内容不能为空！";
+      if (this.videolink.length === 0) {
+        this.warnningText = "视频链接不能为空！";
         this.snackbar = true;
         return;
       }
@@ -130,31 +136,30 @@ export default {
         let obj = {
           _id: this.$route.params.id,
           title: this.title,
-          date: this.date,
+          updatetime: this.getDate(),
           gist: this.gist,
-          content: this.content
+          videolink: this.videolink
         };
         this.request
-          .post("jqdt/updateArticle", { articleInfo: obj })
+          .post("jszl/updateArticle", { articleInfo: obj })
           .then(res => {
             if (res.data.success == true) {
               this.warnningText = "保存成功";
               this.snackbar = true;
-              setInterval(this.refreshArticleList, 3000);
+              this.refreshArticleList();
             }
           });
       } else {
-        // create a new article
-        this.getDate();
+        // create a new book info
         let obj = {
           title: this.title,
-          date: this.date,
+          updatetime: this.getDate(),
           gist: this.gist,
-          content: this.content
+          videolink: this.videolink
         };
         this.request({
           method: "post",
-          url: "/jqdt/saveArticle",
+          url: "/jszl/saveArticle",
           data: {
             articleInfo: obj
           }
@@ -171,7 +176,7 @@ export default {
     },
     // 保存成功后跳转至文章列表页
     refreshArticleList() {
-      this.$router.push({ name: "jqdtlist" });
+      this.$router.push({ name: "jszllist" });
     }
   },
   computed: {

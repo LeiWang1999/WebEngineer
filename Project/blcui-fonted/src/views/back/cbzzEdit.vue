@@ -5,51 +5,57 @@
       {{ warnningText }}
       <v-btn color="pink" text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-subheader class="black--text">标题</v-subheader>
-    <v-text-field v-model="title" label="请输入文章标题" :rules="titlerules" hide-details="auto"></v-text-field>
-    <v-subheader class="black--text">简介</v-subheader>
-    <v-textarea filled name="input-7-4" label="请输入文章简介" v-model="gist" :rules="gistrules"></v-textarea>
+    <v-subheader class="black--text">书名</v-subheader>
+    <v-text-field v-model="name" label="请输入书籍名称" :rules="bookrules" hide-details="auto"></v-text-field>
+    <v-subheader class="black--text">请输入书籍摘要</v-subheader>
+     <v-textarea
+          filled
+          name="input-7-4"
+          label="摘要"
+          v-model="gist"
+          :rules="gistrules"
+         ></v-textarea>
     <v-divider></v-divider>
-    <mavon-editor v-model="content" />
-    <br />
+        <v-subheader class="black--text">购买链接</v-subheader>
+    <v-text-field v-model="buylink" label="请输入购买链接" hide-details="auto"></v-text-field>
     <v-divider></v-divider>
     <br />
-    <v-btn :disabled="!isSaveDisable" block class="pink" @click="saveArticle">点我保存</v-btn>
+    <v-btn :disabled="!isSaveDisable" block class="pink" @click="saveBook">点我保存</v-btn>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: "jqdtedit",
+  name: "cbzzedit",
   data() {
     return {
       snackbar: false,
       warnningText: "",
       alertValue: false,
-      date: "",
-      title: "",
+      updatetime: "",
+      name: "",
       gist: "",
-      content: "",
-      titleRule1State: false,
-      titleRule2State: false,
+      buylink: "",
+      bookRule1State: false,
+      bookRule2State: false,
       gistRule1State: false,
       gistRule2State: false,
-      titlerules: [
+      bookrules: [
         value => {
           if (value) {
-            this.titleRule1State = true;
+            this.bookRule1State = true;
             return true;
           } else {
-            this.titleRule1State = false;
+            this.bookRule1State = false;
             return "必填！";
           }
         },
         value => {
           if ((value || "").length <= 20) {
-            this.titleRule2State = true;
+            this.bookRule2State = true;
             return true;
           } else {
-            this.titleRule2State = false;
+            this.bookRule2State = false;
             return "控制在20个字以内！";
           }
         }
@@ -80,14 +86,13 @@ export default {
     if (this.$route.params.id) {
       // when article exist
       this.request
-        .get("/jqdt/articleDetail/" + this.$route.params.id)
+        .get("/cbzz/bookDetail/" + this.$route.params.id)
         .then(res => {
-          let article = res.data.info;
-          window.console.log(res.data);
-          this.title = article.title;
-          this.date = article.date;
-          this.gist = article.gist;
-          this.content = article.content;
+          let book = res.data.info;
+          this.name = book.name;
+          this.updatetime = book.updatetime;
+          this.gist = book.gist;
+          this.buylink = book.buylink;
         });
     }
   },
@@ -106,21 +111,22 @@ export default {
       if (hh < 10) hh = "0" + hh;
       if (mm < 10) mm = "0" + mm;
       if (ss < 10) ss = "0" + ss;
-      this.date = y + "-" + m + "-" + d + " " + hh + ":" + mm + ":" + ss;
+      let date = y + "-" + m + "-" + d + " " + hh + ":" + mm + ":" + ss;
+      return date
     },
-    saveArticle() {
-      if (this.title.length === 0) {
+    saveBook() {
+      if (this.name.length === 0) {
         this.warnningText = "标题不能为空!";
         this.snackbar = true;
         return;
       }
       if (this.gist.length === 0) {
-        this.warnningText = "简介不能为空";
+        this.warnningText = "摘要不能为空";
         this.snackbar = true;
         return;
       }
-      if (this.content.length === 0) {
-        this.warnningText = "内容不能为空！";
+      if (this.buylink.length === 0) {
+        this.warnningText = "购买链接不能为空！";
         this.snackbar = true;
         return;
       }
@@ -129,56 +135,55 @@ export default {
         // save existed article
         let obj = {
           _id: this.$route.params.id,
-          title: this.title,
-          date: this.date,
+          book: this.book,
+          date: this.getDate(),
           gist: this.gist,
           content: this.content
         };
         this.request
-          .post("jqdt/updateArticle", { articleInfo: obj })
+          .post("cbzz/updateBook", { bookInfo: obj })
           .then(res => {
             if (res.data.success == true) {
               this.warnningText = "保存成功";
               this.snackbar = true;
-              setInterval(this.refreshArticleList, 3000);
+              this.refreshBookList();
             }
           });
       } else {
-        // create a new article
-        this.getDate();
+        // create a new book info
         let obj = {
-          title: this.title,
-          date: this.date,
+          name: this.name,
+          date: this.getDate(),
           gist: this.gist,
-          content: this.content
+          buylink: this.buylink
         };
         this.request({
           method: "post",
-          url: "/jqdt/saveArticle",
+          url: "/cbzz/saveBook",
           data: {
-            articleInfo: obj
+            bookInfo: obj
           }
         })
           .then(res => {
             if (res.data.success == true) {
               this.warnningText = "保存成功";
               this.snackbar = true;
-              this.refreshArticleList();
+              this.refreshBookList();
             }
           })
           .catch(err => window.console.log(err));
       }
     },
     // 保存成功后跳转至文章列表页
-    refreshArticleList() {
-      this.$router.push({ name: "jqdtlist" });
+    refreshBookList() {
+      this.$router.push({ name: "cbzzlist" });
     }
   },
   computed: {
     isSaveDisable() {
       return (
-        this.titleRule1State &&
-        this.titleRule2State &&
+        this.bookRule1State &&
+        this.bookRule2State &&
         this.gistRule1State &&
         this.gistRule2State
       );

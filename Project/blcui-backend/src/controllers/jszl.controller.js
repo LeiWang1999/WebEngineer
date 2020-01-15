@@ -1,20 +1,18 @@
-const Jqdt = require("../db").Jqdt;
-const multiparty = require("multiparty");
-const fs = require("fs")
-const path = require('path');
+const Jszl = require("../db").Jszl;
 
 module.exports = {
   getArticle: async ctx => {
-    await Jqdt.find({}, (err, res) => {
+    await Jszl.find({}, (err, res) => {
       if (err) throw err;
       let dataSend = [];
       for (let i = 0; i < res.length; i++) {
         const element = res[i];
         let obj = {
           _id: element["_id"],
-          date: element["date"],
+          updatetime: element["updatetime"],
           title: element["title"],
-          gist: element["gist"]
+          gist: element["gist"],
+          videolink: element["videolink"]
         };
         dataSend.push(obj);
       }
@@ -27,7 +25,7 @@ module.exports = {
 
   getOneArticle: async ctx =>{
       let articleId =  ctx.params.id
-      await Jqdt.findOne({_id:articleId},(err, res)=>{
+      await Jszl.findOne({_id:articleId},(err, res)=>{
           if (err) throw err
           else {
               ctx.body = {
@@ -40,8 +38,7 @@ module.exports = {
   saveArticle: async ctx => {
     let request = ctx.request;
     let articleInfo = request.body["articleInfo"];
-    console.log(articleInfo)
-    let newArticle = new Jqdt(articleInfo);
+    let newArticle = new Jszl(articleInfo);
     await newArticle.save(err => {
       if (err) throw err;
       else {
@@ -61,16 +58,16 @@ module.exports = {
     let request = ctx.request;
     let articleInfo = request.body["articleInfo"];
     console.log(articleInfo)
-    await Jqdt.findById(articleInfo._id,(err,res)=>{
+    await Jszl.findById(articleInfo._id,(err,res)=>{
         if (err)    throw err
         else {
             let obj = {
                 'title': articleInfo.title,
-                'date':articleInfo.date,
+                'updatetime':articleInfo.updatetime,
                 'gist':articleInfo.gist,
-                'content':articleInfo.content
+                'videolink':articleInfo.videolink
             }
-            Jqdt.updateOne({_id:articleInfo._id},obj,err=>{
+            Jszl.updateOne({_id:articleInfo._id},obj,err=>{
                 if (err) throw err
                 else console.log("更新"+articleInfo._id+"成功")
             })
@@ -85,7 +82,7 @@ module.exports = {
     let request = ctx.request;
     let articleId = request.body["articleId"];
     console.log(articleId)
-    await Jqdt.deleteOne({_id:articleId}, (err,res)=>{
+    await Jszl.deleteOne({_id:articleId}, (err,res)=>{
         if (err)
             throw err
 
@@ -95,27 +92,5 @@ module.exports = {
       message: "更新成功"
     };
   },
-  uploadImage: async ctx => {
-    let form = new multiparty.Form();
-    let D = Date.now();
-    let saveImg = path.join(__dirname, '../../../blcui-fonted/src/static/jqdt/' + D + '.jpg');
-    let pathImg = path.join(__dirname, './static/jqdt/' + D + '.jpg');
-    console.log(saveImg);
-    form.parse(ctx.req, function (err, fields, files) {
-      const image = files.image; // 获取上传文件
-      let rawPath = image[0].path;
-     fs.copyFile(rawPath, saveImg, function (err) {//用fs写入文件
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('写入成功！', saveImg);
-        }
-    })
-  })
-    ctx.body = {
-        success:true,
-        path:pathImg
-    }
-}
  
 };

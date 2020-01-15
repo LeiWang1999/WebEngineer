@@ -66,7 +66,7 @@ export default {
           {
             icon: "mdi-tab",
             title: "个人简介",
-            to: "/admin/table"
+            to: "/admin/grjj"
           },
           {
             icon: "mdi-tab",
@@ -76,17 +76,17 @@ export default {
           {
             icon: "mdi-tab",
             title: "出版专著",
-            to: "/admin/table"
+            to: "/admin/cbzz"
           },
           {
             icon: "mdi-tab",
             title: "技术专栏",
-            to: "/admin/table"
+            to: "/admin/jszl"
           },
           {
             icon: "mdi-tab",
             title: "资料下载",
-            to: "/admin/table"
+            to: "/admin/zlxz"
           },
           {
             icon: "mdi-tab",
