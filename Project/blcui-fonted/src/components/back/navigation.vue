@@ -90,6 +90,11 @@ export default {
           },
           {
             icon: "mdi-tab",
+            title: "用户留言",
+            to: "/admin/message"
+          },
+          {
+            icon: "mdi-tab",
             title: "人生信条",
             to: "/admin/table"
           }

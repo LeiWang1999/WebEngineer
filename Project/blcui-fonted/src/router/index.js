@@ -181,6 +181,14 @@ const routes = [
         meta: {
           title: "资料下载-编辑"
         }
+      },
+      {
+        path: "message",
+        name: "message",
+        component: () => import("@/views/back/yhly"),
+        meta: {
+          title: "用户留言"
+        }
       }
     ]
   },

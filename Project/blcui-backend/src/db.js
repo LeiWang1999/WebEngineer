@@ -42,12 +42,24 @@ const techSchema = new mongoose.Schema({
     videolink: String,
     updatetime: String,
 })
-//技术专栏
-const techSchema = new mongoose.Schema({
-    title: String,
+//资料下载
+const downloadSchema = new mongoose.Schema({
+    name: String,
     gist: String,
-    videolink: String,
+    downloadlink: String,
     updatetime: String,
+})
+//用户留言
+const messageSchema = new mongoose.Schema({
+    title: String,
+    nickname: String,
+    email: String,
+    phone: String,
+    content: String,
+    createtime: String,
+    isreplied:  Boolean,
+    replycontent: String,
+    replytime: String
 })
 /************** 定义模型Model **************/
 
@@ -56,7 +68,9 @@ const Models = {
     Jqdt: mongoose.model('Jqdt', articleSchema, 'jqdt'),
     Grjj: mongoose.model('Grjj', grjjSchema, 'grjj'),
     Cbzz: mongoose.model('Cbzz', booksSchema, 'cbzz'),
-    Jszl: mongoose.model('Jszl', techSchema, 'jszl')
+    Jszl: mongoose.model('Jszl', techSchema, 'jszl'),
+    Zlxz: mongoose.model('Zlxz', downloadSchema, 'zlxz'),
+    Yhly: mongoose.model('Yhly', messageSchema, 'yhly')
 }
 
 module.exports = Models;

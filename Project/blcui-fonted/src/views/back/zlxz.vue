@@ -17,7 +17,7 @@
         </v-card>
       </v-dialog>
     </div>
-    <v-btn dark color="orange" @click="handleAdd">
+    <v-btn dark color="black" @click="handleAdd">
       <v-icon>mdi-plus</v-icon>
       <span>点我新增</span>
       <v-icon>mdi-plus</v-icon>
@@ -26,19 +26,17 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-center">标题</th>
+            <th class="text-center">文件名</th>
             <th class="text-center">简介</th>
-            <th class="text-center">视频链接</th>
+            <th class="text-center">下载链接</th>
             <th class="text-center">操作</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,i) in news" :key="i" class="text-center">
-            <td>{{ item.title }}</td>
-            <td>
-              {{ item.gist }}
-            </td>
-            <td>{{ item.videolink }}</td>
+          <tr v-for="(item,i) in files" :key="i" class="text-center">
+            <td>{{ item.name }}</td>
+            <td>{{ item.gist }}</td>
+            <td>{{ item.downloadlink }}</td>
             <td>
               <v-btn text color="primary" @click="handleEdit(i)">编辑</v-btn>
               <v-btn text color="red" @click="showDialog(i)">删除</v-btn>
@@ -55,7 +53,7 @@ export default {
   name: "jszl",
   data() {
     return {
-      news: [],
+      files: [],
       dialog: false,
       curIndex: 0
     };
@@ -63,10 +61,10 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/jszl/articalList"
+      url: "/zlxz/fileList"
     })
       .then(res => {
-        this.news = res.data.message;
+        this.files = res.data.message;
       })
       .catch(err => window.console.log(err));
   },
@@ -74,28 +72,28 @@ export default {
     fetchData() {
       this.request({
         method: "POST",
-        url: "/jszl/articalList"
+        url: "/zlxz/fileList"
       })
         .then(res => {
-          this.news = res.data.message;
+          this.files = res.data.message;
         })
         .catch(err => window.console.log(err));
     },
     handleAdd() {
-      this.$router.push("/admin/jszledit");
+      this.$router.push("/admin/zlxzedit");
     },
     handleEdit(index) {
-      let articleId = this.news[index]["_id"];
-      this.$router.push("/admin/jszledit/" + articleId);
+      let fileId = this.files[index]["_id"];
+      this.$router.push("/admin/zlxzedit/" + fileId);
     },
     handleDelete() {
       this.dialog = false;
       let index = this.curIndex;
-      let articleId = this.news[index]["_id"];
+      let fileId = this.files[index]["_id"];
       this.request({
         method: "POST",
-        url: "/jszl/deleteArticle",
-        data: { articleId: articleId }
+        url: "/zlxz/deleteFile",
+        data: { fileId: fileId }
       })
         .then(res => {
           if (res.data.success == true) {

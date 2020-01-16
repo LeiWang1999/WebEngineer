@@ -5,7 +5,9 @@ const {
   JqdtController,
   GrjjController,
   CbzzController,
-  JszlController
+  JszlController,
+  ZlxzController,
+  YhlyController
 } = require("./controllers");
 
 const userRoutes = new Router({ prefix: "/user" }).get(
@@ -28,18 +30,30 @@ const cbzzRoutes = new Router({ prefix: "/cbzz" })
   .post("/saveBook", CbzzController.saveBook)
   .post("/updateBook", CbzzController.updateBook)
   .post("/deleteBook", CbzzController.deleteBook);
-const jszlRoutes = new Router({ prefix: "/jszl" })
+  const jszlRoutes = new Router({ prefix: "/jszl" })
   .get("/articleDetail/:id", JszlController.getOneArticle)
   .post("/articalList", JszlController.getArticle)
   .post("/saveArticle", JszlController.saveArticle)
   .post("/updateArticle", JszlController.updateArticle)
   .post("/deleteArticle", JszlController.deleteArticle)
+  const zlxzRoutes = new Router({ prefix: "/zlxz" })
+  .get("/fileDetail/:id", ZlxzController.getOneFile)
+  .post("/fileList", ZlxzController.getFile)
+  .post("/saveFile", ZlxzController.saveFile)
+  .post("/updateFile", ZlxzController.updateFile)
+  .post("/deleteFile", ZlxzController.deleteFile)
+  const yhlyRoutes = new Router({ prefix: "/yhly" })
+  .post("/messageList", YhlyController.getMessage)
+  .post("/updateMessage", YhlyController.updateMessage)
+  .post("/deleteMessage", YhlyController.deleteMessage)
 PREFIX = "/api";
 const router = new Router({ prefix: PREFIX })
   .use(userRoutes.routes())
   .use(jqdtRoutes.routes())
   .use(grjjRoutes.routes())
   .use(cbzzRoutes.routes())
-  .use(jszlRoutes.routes());
+  .use(jszlRoutes.routes())
+  .use(zlxzRoutes.routes())
+  .use(yhlyRoutes.routes());
 
 module.exports = () => compose([router.routes(), router.allowedMethods()]);
