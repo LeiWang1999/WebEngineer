@@ -1,22 +1,38 @@
-<template>
-  <v-card>
-    <v-footer>
-      <v-card
-        flat
-        tile
-        width="100%"
-        class="primary lighten-1 text-center"
-      >
-        <v-card-text class="white--text">
-          Copyright © 南京工业大学 苏ICP备11073482号   公网安备32011102010195号
-        </v-card-text>
-      </v-card>
+<template lang="html">
+  <div>
+    <v-footer
+      height="auto"
+      color="primary">
+      <v-layout row wrap>
+        mt-1
+          Made with <v-icon small color="red lighten-1">mdi-heart</v-icon> by Vuetify | Proudly Powered by
+       <router-link to="/admin" class="black--text">后台界面</router-link>
+        {{ footerCopyright }} {{ getCurrentYear }}
+      </v-layout>
     </v-footer>
-  </v-card>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "pageFooter"
-}
+  name: "pageFooter",
+  data: () => ({
+    //
+  }),
+  computed: {
+    footerCopyright() {
+      return "@Copy Right";
+    },
+    getCurrentYear() {
+      return new Date().getFullYear();
+    }
+  }
+};
 </script>
+
+<style lang="css" scoped>
+.attribution a[href] {
+  text-decoration: underline;
+  color: #ccc;
+}
+</style>

@@ -59,14 +59,7 @@ export default {
     };
   },
   mounted() {
-    this.request({
-      method: "POST",
-      url: "/zlxz/fileList"
-    })
-      .then(res => {
-        this.files = res.data.message;
-      })
-      .catch(err => window.console.log(err));
+    this.fetchData();
   },
   methods: {
     fetchData() {

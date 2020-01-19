@@ -46,6 +46,7 @@ const cbzzRoutes = new Router({ prefix: "/cbzz" })
   .post("/messageList", YhlyController.getMessage)
   .post("/updateMessage", YhlyController.updateMessage)
   .post("/deleteMessage", YhlyController.deleteMessage)
+  .post("/saveMessage",YhlyController.saveMessage)
 PREFIX = "/api";
 const router = new Router({ prefix: PREFIX })
   .use(userRoutes.routes())

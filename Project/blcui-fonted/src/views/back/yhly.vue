@@ -1,4 +1,4 @@
-<template>
+-<template>
   <div>
     <div class="dialog text-center">
       <v-dialog v-model="dialog" width="500">
@@ -30,6 +30,9 @@
               </v-col>
               <v-col md="12" sm="12">
                 <v-text-field disabled label="联系方式" v-model="messages[curIndex].phone"></v-text-field>
+              </v-col>
+                            <v-col md="12" sm="12">
+                <v-text-field disabled label="标题" v-model="messages[curIndex].title"></v-text-field>
               </v-col>
               <v-col md="12" sm="12">
                 <v-text-field disabled label="留言内容" v-model="messages[curIndex].content"></v-text-field>
@@ -87,7 +90,7 @@
 
 <script>
 export default {
-  name: "yhll",
+  name: "yhly",
   data() {
     return {
       messages: [
@@ -110,14 +113,7 @@ export default {
     };
   },
   mounted() {
-    this.request({
-      method: "POST",
-      url: "/yhly/messageList"
-    })
-      .then(res => {
-        this.messages = res.data.message;
-      })
-      .catch(err => window.console.log(err));
+    this.fetchData();
   },
   methods: {
     getDate: function() {

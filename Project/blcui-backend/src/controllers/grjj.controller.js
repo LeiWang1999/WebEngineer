@@ -11,6 +11,7 @@ module.exports = {
   },
   updateInfo: async ctx=>{
     let obj = ctx.request.body.obj
+    console.log(obj)
     await   Grjj.updateOne({},obj,err=>{
       if (err) throw err
       else console.log("更新个人简介成功")

@@ -21,17 +21,24 @@ module.exports = {
         };
         dataSend.push(obj);
       }
+      let dataReplied = [];
+      dataSend.forEach(element=>{
+        if (element.isreplied){
+          dataReplied.push(element);
+        }
+      })
       ctx.body = {
         success: true,
-        message: dataSend
+        message: dataSend,
+        showMessage: dataReplied
       };
     });
   },
-  saveFile: async ctx => {
+  saveMessage: async ctx => {
     let request = ctx.request;
-    let fileInfo = request.body["info"];
-    let newFile = new Yhly(fileInfo);
-    await newFile.save(err => {
+    let Info = request.body["info"];
+    let newMsh = new Yhly(Info);
+    await newMsh.save(err => {
       if (err) throw err;
       else {
         console.log("保存成功");

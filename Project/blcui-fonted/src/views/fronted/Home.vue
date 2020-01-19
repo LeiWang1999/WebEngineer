@@ -43,19 +43,6 @@ export default {
     CbzzCard,
     JszlCard,
     ZlxzCard
-  },
-  data() {
-    return {
-      drawer: false,
-      links: [
-        { text: "个人简介", route: "/grjj" },
-        { text: "认证情况", route: "/rzqk" },
-        { text: "学生评价", route: "/xspj" },
-        { text: "成绩查询", route: "/cjcx" },
-        { text: "参与项目", route: "/cyxm" },
-        { text: "用户论坛", route: "/yhlt" }
-      ]
-    };
   }
 };
 </script>

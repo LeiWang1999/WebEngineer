@@ -1,42 +1,54 @@
 <template>
-  <v-card class="mx-auto" max-width="344" outlined>
-    <v-card-title primary-title>
-      <div class="title">技术专栏</div>
-      <v-spacer></v-spacer>
-      <v-card-actions>
-        <v-btn text>
-          <v-icon color="blue">mdi-more</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card-title>
-    <v-divider></v-divider>
-      <v-list-item v-model="news" v-for="(eachnew, i) in news" :key="i">
-        <v-list-item-content>
-            <v-btn block text class="grey--text">
-              <span class="text--right" block>{{eachnew.title}}</span>
-            </v-btn>
-        </v-list-item-content>
-      </v-list-item>
-  </v-card>
+<v-card hover flat>
+  <v-img
+    class="white--text"
+    height="200px"
+    src="@/static/home/技术专栏.jpg"
+  >
+    <v-container fill-height fluid>
+      <v-layout fill-height>
+        <v-flex xs12 align-end flexbox>
+          <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">技术专栏</h2>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-img>
+  <v-card-title small>
+    <div>
+      <p class="grey--text">2020年1月16日下午12点   南京</p>
+    </div>
+  </v-card-title>
+  <v-card-text>
+      <p>
+        想交给大家一些技术......
+      </p>
+  </v-card-text>
+  <v-card-actions>
+    <v-btn text outlined dark color="yellow" router to="/jszl" >了解更多</v-btn>
+  </v-card-actions>
+</v-card>
 </template>
 
 <script>
 export default {
-  name:"jszlcard",
-  data(){
+  name: "jszlcard",
+  data() {
     return {
-      news:[
-        {title:"技术1"},
-        {title:"技术2"},
-        {title:"技术3"},
-        {title:"技术4"},
-        {title:"技术5"},
-      ]
-    }
+      news: []
+    };
+  },
+  mounted() {
+    this.request({
+      method: "POST",
+      url: "/jszl/articalList"
+    })
+      .then(res => {
+        this.news = res.data.message;
+      })
+      .catch(err => window.console.log(err));
   }
-}
+};
 </script>
 
 <style>
-
 </style>

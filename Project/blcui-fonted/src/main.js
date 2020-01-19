@@ -4,19 +4,19 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import request from './request';
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+
 
 Vue.prototype.request = request
 
 Vue.config.productionTip = false
+Vue.use(iView);
 
-Vue.use(mavonEditor)
 
 new Vue({
   router,
   vuetify,
-  mavonEditor,
   store,
   render: h => h(App)
 }).$mount('#app')

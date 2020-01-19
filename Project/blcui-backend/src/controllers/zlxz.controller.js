@@ -12,7 +12,8 @@ module.exports = {
           updatetime: element["updatetime"],
           name: element["name"],
           gist: element["gist"],
-          downloadlink: element["downloadlink"]
+          downloadlink: element["downloadlink"],
+          downloadtime: element["downloadtime"]
         };
         dataSend.push(obj);
       }
@@ -65,7 +66,8 @@ module.exports = {
                 'name': fileInfo.name,
                 'updatetime':fileInfo.updatetime,
                 'gist':fileInfo.gist,
-                'downloadlink':fileInfo.downloadlink
+                'downloadlink':fileInfo.downloadlink,
+                'downloadtime':fileInfo.downloadtime
             }
             Zlxz.updateOne({_id:fileInfo._id},obj,err=>{
                 if (err) throw err

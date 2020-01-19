@@ -153,7 +153,7 @@ export default {
         // create a new book info
         let obj = {
           title: this.title,
-          updatetime: this.getDate(),
+          createtime: this.getDate(),
           gist: this.gist,
           videolink: this.videolink
         };

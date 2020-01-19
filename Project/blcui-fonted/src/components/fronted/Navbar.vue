@@ -1,55 +1,27 @@
 <template>
   <nav>
-    <v-app-bar app class="blue" dark>
-        <v-btn text router to="/">
-          <span class="font-weight-light">blcui</span>
+    <v-app-bar fixed app dark class="primary">
+      <router-link to="/" class="white--text">
+        <v-toolbar-title class="headline">
+          <span>Blcui</span>
           <span>的个人主页</span>
-        </v-btn>
-      <v-spacer>
-        <v-container grid-list-xs>
-          <v-row no-gutters>
-            <v-col cols="12" sm="2" v-for="(link,i) in links" :key="i">
-              <v-btn text router :to="link.route">{{link.text}}</v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-spacer>
-      <v-btn text small class="blue" router to="/admin" @click="startDrawer">
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-      <v-btn text color="black">
-        <v-icon>mdi-email</v-icon>
-        <span>Email me</span>
-      </v-btn>
+        </v-toolbar-title>
+      </router-link>
+      <v-spacer></v-spacer>
+      <v-text-field
+        flat
+        :solo-inverted="!$vuetify.theme.dark"
+        :solo="$vuetify.theme.dark"
+        append-icon="mdi-magnify"
+        label="搜索文章"
+        v-model="keywords"
+        hide-details
+        @keyup.enter="search"
+      ></v-text-field>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text v-for="(item, i) in this.links" :key="i" router :to="item.route">{{item.text}}</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app class="primary">
-      <v-card class="primary" flat>
-          <v-container fill-height fluid>
-            <v-layout fill-height>
-              <v-flex xs12 align-end flexbox>
-                <span class="headline">个人简介</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        <v-card-title>
-          <v-container fill-height>
-            <v-layout column="" fill-height align-center>
-              <v-flex mt-5 flexbox>
-                <v-avatar size="150" color="red">
-                  <img src="/avatar.jpg" alt="alt" />
-                </v-avatar>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-title>
-        <v-card-text>
-          <h2 align="center" class="white--text">崔北亮</h2>
-        </v-card-text>
-        <v-card-text>
-          <p class="white--text">男，中共党员，现任职于南京工业大学信息中心，高级工程师</p>
-        </v-card-text>
-      </v-card>
-    </v-navigation-drawer>
   </nav>
 </template>
 
@@ -59,23 +31,20 @@ export default {
   data() {
     return {
       drawer: false,
+      keywords:"",
       links: [
+        { text: "Home", route: "/" },
         { text: "近期动态", route: "/jqdt" },
         { text: "出版专著", route: "/cbzz" },
         { text: "技术专栏", route: "/jszl" },
         { text: "资料下载", route: "/zlxz" },
         { text: "用户论坛", route: "/yhlt" }
-      ],
-      linkdemo: [
-        { icon: "mdi-clock", text: "Dashboard", route: "/" },
-        { icon: "mdi-account", text: "My Projects", route: "/projects" },
-        { icon: "mdi-flag", text: "My Team", route: "/team" }
       ]
     };
   },
-  methods: {
-    startDrawer() {
-      this.drawer = ~this.drawer;
+  methods:{
+    search(){
+      alert("搜索关键字是"+this.keywords)
     }
   }
 };

@@ -1,28 +1,25 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-    outlined
+<v-card hover flat>
+  <v-img
+    class="white--text"
+    height="200px"
+    src="@/static/home/人生信条.jpg"
   >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title class="headline mb-1">人生信条</v-list-item-title>
-        <v-list-item v-for="(text,i) in texts" :key="i">
-            <span>{{text}}</span>
-        </v-list-item>
-      </v-list-item-content>
-    </v-list-item>
-
-    <v-card-actions style="left: 150px; position: relative">
-      <v-btn icon>
-          <v-icon>mdi-thumb-up</v-icon>
-      </v-btn>
-    <v-card-text>
-     Current:{{curLikes}}
-    </v-card-text>
-    </v-card-actions>
-
-  </v-card>
+    <v-container fill-height fluid>
+      <v-layout fill-height>
+        <v-flex xs12 align-end flexbox>
+          <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">人生信条</h2>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-img>
+  <v-card-title>
+    <div>      
+      <p class="grey--text">Cui Beiliang</p>
+      <p v-for="(text,i) in texts" :key="i" >{{text}}</p>
+    </div>
+  </v-card-title>
+</v-card>
 </template>
 
 <script>

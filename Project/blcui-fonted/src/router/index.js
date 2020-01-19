@@ -9,18 +9,23 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "dashboard",
+    redirect: "home",
     component: Index,
     children: [
       {
-        path: "dashboard",
-        name: "dashboard",
-        component: () => import("../views/fronted/Dashboard.vue")
+        path: "home",
+        name: "home",
+        component: () => import("../views/fronted/Home.vue")
       },
       {
         path: "jqdt",
         name: "jqdt",
         component: () => import("../views/fronted/Jqdt.vue")
+      },
+      {
+        path: "jqdtDetail/:id",
+        name: "jqdtdetail",
+        component: () => import("../views/fronted/JqdtDetail.vue")
       },
       {
         path: "cbzz",
@@ -31,6 +36,11 @@ const routes = [
         path: "jszl",
         name: "jszl",
         component: () => import("../views/fronted/Jszl.vue")
+      },
+      {
+        path: "jszlDetail/:id",
+        name: "jszldetail",
+        component: () => import("../views/fronted/JszlDetail.vue")
       },
       {
         path: "zlxz",

@@ -9,10 +9,12 @@ module.exports = {
         const element = res[i];
         let obj = {
           _id: element["_id"],
+          createtime: element["createtime"],
           updatetime: element["updatetime"],
           title: element["title"],
           gist: element["gist"],
-          videolink: element["videolink"]
+          videolink: element["videolink"],
+          clicktime: element["clicktime"]
         };
         dataSend.push(obj);
       }
@@ -65,7 +67,8 @@ module.exports = {
                 'title': articleInfo.title,
                 'updatetime':articleInfo.updatetime,
                 'gist':articleInfo.gist,
-                'videolink':articleInfo.videolink
+                'videolink':articleInfo.videolink,
+                "clicktime":articleInfo.clicktime
             }
             Jszl.updateOne({_id:articleInfo._id},obj,err=>{
                 if (err) throw err
@@ -85,7 +88,6 @@ module.exports = {
     await Jszl.deleteOne({_id:articleId}, (err,res)=>{
         if (err)
             throw err
-
     })
     ctx.body = {
       success: true,

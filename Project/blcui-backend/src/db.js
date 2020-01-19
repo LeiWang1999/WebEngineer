@@ -22,11 +22,14 @@ const articleSchema = new mongoose.Schema({
     date: String,
     gist: String,
     content: String,
+    clicktime: Number
 })
 //个人简介
 const grjjSchema = new mongoose.Schema({
     content:String,
-    updatetime:String
+    updatetime:String,
+    avatarBase64: String,
+    detailContent: String
 })
 //出版专著
 const booksSchema = new mongoose.Schema({
@@ -40,7 +43,9 @@ const techSchema = new mongoose.Schema({
     title: String,
     gist: String,
     videolink: String,
+    createtime: String,
     updatetime: String,
+    clicktime: Number
 })
 //资料下载
 const downloadSchema = new mongoose.Schema({
@@ -48,6 +53,7 @@ const downloadSchema = new mongoose.Schema({
     gist: String,
     downloadlink: String,
     updatetime: String,
+    downloadtime: Number
 })
 //用户留言
 const messageSchema = new mongoose.Schema({

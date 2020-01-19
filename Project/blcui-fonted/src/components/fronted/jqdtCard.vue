@@ -1,26 +1,32 @@
 <template>
-  <v-card class="mx-auto" max-width="344" outlined>
-    <v-card-title primary-title>
-      <div class="title">近期动态</div>
-      <v-spacer></v-spacer>
-      <v-card-actions>
-        <v-btn text>
-          <v-icon color="blue">mdi-more</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card-title>
-    <v-divider></v-divider>
-      <v-list-item v-model="news" v-for="(eachnew, i) in news" :key="i">
-        <v-list-item-content>
-          <v-card-title primary-title small>{{eachnew.time}}</v-card-title>
-          <v-card-actions>
-            <v-btn absolute right text class="grey--text">
-              <span class="text--right" block>{{eachnew.title}}</span>
-            </v-btn>
-          </v-card-actions>
-        </v-list-item-content>
-      </v-list-item>
-  </v-card>
+<v-card hover flat>
+  <v-img
+    class="white--text"
+    height="200px"
+    src="@/static/home/近期动态.jpg"
+  >
+    <v-container fill-height fluid>
+      <v-layout fill-height>
+        <v-flex xs12 align-end flexbox>
+          <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">近期动态</h2>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-img>
+  <v-card-title small>
+    <div>
+      <p class="grey--text">2020年1月16日下午10点   南京</p>
+    </div>
+  </v-card-title>
+  <v-card-text>
+      <p>
+        最近做了一些有意思的事情......
+      </p>
+  </v-card-text>
+  <v-card-actions>
+    <v-btn text outlined dark color="red" router to="/jqdt" >了解更多</v-btn>
+  </v-card-actions>
+</v-card>
 </template>
 
 <script>
@@ -29,13 +35,20 @@ export default {
   data() {
     return {
       news: [
-        { title: "做了啥1", time: "11-10" },
-        { title: "做了啥2...", time: "11-20" },
-        { title: "1231313...", time: "11-30" },
-        { title: "adaddasda...", time: "09-10" }
       ]
     };
-  }
+  },
+  mounted() {
+    this.request({
+      method: "POST",
+      url: "/jqdt/articalList"
+    })
+      .then(res => {
+        this.news = res.data.message.slice(0,4);
+        
+      })
+      .catch(err => window.console.log(err));
+  },
 };
 </script>
 
