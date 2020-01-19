@@ -2,8 +2,9 @@ const Cbzz = require("../db").Cbzz;
 
 module.exports = {
   getBooks: async ctx => {
-    await Cbzz.find({}, (err, res) => {
-      if (err) throw err;
+    let page = ctx.request.body.page;
+    let limit = ctx.request.body.limit;
+    let res = await Cbzz.find({}).sort({'_id':-1}).skip(page*limit).limit(limit);
       let dataSend = [];
       for (let i = 0; i < res.length; i++) {
         const element = res[i];
@@ -11,6 +12,7 @@ module.exports = {
           _id: element["_id"],
           name: element["name"],
           gist: element["gist"],
+          coverBase64: element["coverBase64"],
           buylink: element["buylink"],
           updatetime: element["updatetime"]
         };
@@ -20,7 +22,6 @@ module.exports = {
         success: true,
         message: dataSend
       };
-    });
   },
 
   getOneBook: async ctx => {
@@ -64,6 +65,7 @@ module.exports = {
         let obj = {
           title: bookInfo.title,
           date: bookInfo.date,
+          coverBase64: bookInfo.coverBase64,
           gist: bookInfo.gist,
           content: bookInfo.content
         };

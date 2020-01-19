@@ -9,7 +9,8 @@
             发表于{{item.date}}
           </span>
           <span>
-            <v-icon small>mdi-view</v-icon>阅读次数 {{item.clicktime}}
+            <v-icon small>mdi-view</v-icon>
+            阅读次数 {{item.clicktime}}
           </span>
         </v-card-text>
         <v-card-text class="content">{{item.gist}}</v-card-text>
@@ -32,30 +33,17 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/jqdt/articalList"
+      url: "/jqdt/articalList",
     })
       .then(res => {
         this.articleList = res.data.message;
       })
       .catch(err => window.console.log(err));
   },
-  methods:{
-    handleRead(index){
+  methods: {
+    handleRead(index) {
       let articleId = this.articleList[index]["_id"];
-      let obj = this.articleList[index];
-      window.console.log(obj)
-      if (obj.clicktime) {
-        obj.clicktime = obj.clicktime +1;
-      }else{
-        obj["clicktime"] = 1;
-      }
-      this.request
-          .post("jqdt/updateArticle", { articleInfo: obj })
-          .then(res => {
-            if (res.data.success == true) {
-               this.$router.push("/jqdtDetail/" + articleId);
-            }
-          });
+      this.$router.push("/jqdtDetail/" + articleId);
     }
   }
 };

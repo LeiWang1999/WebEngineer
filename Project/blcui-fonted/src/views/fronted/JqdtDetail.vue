@@ -43,7 +43,44 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       // when article exist
-      this.fecthData();
+      this.request
+        .get("/jqdt/articleDetail/" + this.$route.params.id)
+        .then(res => {
+          let article = res.data.info;
+          window.console.log(res.data);
+          this.title = article.title;
+          this.date = article.date;
+          this.gist = article.gist;
+          this.content = article.content;
+          this.clicktime = article.clicktime;
+          let otherinfo = res.data.otherinfo;
+          this.prev = otherinfo.prev;
+          this.next = otherinfo.next;
+        })
+        .then(() => {
+          let articleId = this.$route.params.id;
+          let obj = {
+            _id: articleId,
+            title: this.title,
+            date: this.date,
+            gist: this.gist,
+            content: this.content,
+            clicktime: this.clicktime
+          };
+          window.console.log(obj);
+          if (obj.clicktime) {
+            obj.clicktime = obj.clicktime + 1;
+          } else {
+            obj["clicktime"] = 1;
+          }
+          this.request
+            .post("jqdt/updateArticle", { articleInfo: obj })
+            .then(res => {
+              if (res.data.success == true) {
+                window.console.log("获取成功");
+              }
+            });
+        });
     }
   },
   methods: {

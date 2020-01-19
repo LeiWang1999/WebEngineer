@@ -38,13 +38,14 @@ export default {
         { text: "出版专著", route: "/cbzz" },
         { text: "技术专栏", route: "/jszl" },
         { text: "资料下载", route: "/zlxz" },
-        { text: "用户论坛", route: "/yhlt" }
+        { text: "他山之石", route: "/tszs" },
+        { text: "访客留言", route: "/yhlt" }        
       ]
     };
   },
   methods:{
     search(){
-      alert("搜索关键字是"+this.keywords)
+      
     }
   }
 };

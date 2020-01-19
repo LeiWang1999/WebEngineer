@@ -5,26 +5,30 @@ const path = require("path");
 
 module.exports = {
   getArticle: async ctx => {
-    await Jqdt.find({}, (err, res) => {
-      if (err) throw err;
-      let dataSend = [];
-      for (let i = 0; i < res.length; i++) {
-        const element = res[i];
-        let obj = {
-          _id: element["_id"],
-          date: element["date"],
-          title: element["title"],
-          gist: element["gist"],
-          content: element["content"],
-          clicktime: element["clicktime"]
-        };
-        dataSend.push(obj);
-      }
-      ctx.body = {
-        success: true,
-        message: dataSend
+    let page = ctx.request.body.page;
+    let limit = ctx.request.body.limit;
+    let result = await Jqdt.find({})
+      .sort({ _id: -1 })
+      .skip(page * limit)
+      .limit(limit);
+
+    let dataSend = [];
+    for (let i = 0; i < result.length; i++) {
+      const element = result[i];
+      let obj = {
+        _id: element["_id"],
+        date: element["date"],
+        title: element["title"],
+        gist: element["gist"],
+        content: element["content"],
+        clicktime: element["clicktime"]
       };
-    });
+      dataSend.push(obj);
+    }
+    ctx.body = {
+      success: true,
+      message: dataSend
+    };
   },
 
   getOneArticle: async ctx => {
@@ -37,7 +41,7 @@ module.exports = {
     await Jqdt.findOne({ _id: articleId }, (err, res1) => {
       if (err) throw err;
       else {
-        res = res1
+        res = res1;
       }
     });
     await Jqdt.find({ _id: { $gt: ctx.params.id } }, (err, res2) => {
@@ -55,7 +59,6 @@ module.exports = {
       }
       otherinfo.prev = prev;
       otherinfo.next = next;
- 
     });
     ctx.body = {
       success: true,
@@ -127,14 +130,14 @@ module.exports = {
       __dirname,
       "../../../blcui-fonted/public/image/jqdt/" + D + ".jpg"
     );
-    let sendPath = "/image/jqdt/" + D + ".jpg"
-    form.parse(ctx.req,(err, fields, files) => {
-      let input = files.upload_file[0] 
+    let sendPath = "/image/jqdt/" + D + ".jpg";
+    form.parse(ctx.req, (err, fields, files) => {
+      let input = files.upload_file[0];
       const reader = fs.createReadStream(input.path); // 创建可读流
-      const ext = input.originalFilename.split('.').pop(); // 获取上传文件扩展名
+      const ext = input.originalFilename.split(".").pop(); // 获取上传文件扩展名
       const upStream = fs.createWriteStream(saveImg); // 创建可写流
       reader.pipe(upStream);
-    })
+    });
     ctx.body = {
       success: true,
       path: sendPath
