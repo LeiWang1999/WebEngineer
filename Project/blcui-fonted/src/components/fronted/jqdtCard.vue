@@ -31,10 +31,13 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/jqdt/articalList"
+      url: "/jqdt/articalList",
+      data:{
+        limit: 9
+      }
     })
       .then(res => {
-        this.news = res.data.message.slice(0, 4);
+        this.news = res.data.message;
       })
       .catch(err => window.console.log(err));
   }

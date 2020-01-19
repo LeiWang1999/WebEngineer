@@ -2,20 +2,20 @@
   <div>
     <v-layout column justify-center align-center class="index-container">
       <v-flex xs12 sm8 md6 class="card-container">
-        <v-card class="card" v-for="(item,i) in files" :key="i">
-          <v-card-title class="headline">{{item.name}}</v-card-title>
+        <v-card class="card" v-for="(item,i) in articleList" :key="i">
+          <v-card-title class="headline">{{item.title}}</v-card-title>
           <v-card-text class="post">
             <span class="post-time">
               <v-icon small>mdi-calendar-month-outline</v-icon>
-              发表于{{item.updatetime}}
+              发表于{{item.date}}
             </span>
             <span>
               <v-icon small>mdi-view</v-icon>
-              下载次数 {{item.downloadtime}}
+              阅读次数 {{item.clicktime}}
             </span>
           </v-card-text>
           <v-card-text class="content">{{item.gist}}</v-card-text>
-          <v-btn color="primary" text :href="item.downloadlink">点击下载</v-btn>
+          <v-btn color="primary" text @click="handleRead(i)">阅读原文 »</v-btn>
         </v-card>
       </v-flex>
     </v-layout>
@@ -28,55 +28,43 @@
 
 <script>
 export default {
-  name: "Zlxz",
+  name: "jszl",
   data() {
     return {
-      page: 1,
-      limit: 6,
       length: 0,
-      keywords: "",
-      files: [],
-      currentPage: 1
+      page: 1,
+      limit: 5,
+      articleList: []
     };
   },
   mounted() {
-    this.fetchData();
-    this.files.forEach(element => {
-      element.expand = false;
-    });
+    this.fetchInfo();
   },
   methods: {
-    fetchData() {
+    fetchInfo() {
       this.request({
         method: "POST",
-        url: "/zlxz/fileList",
+        url: "/tszs/articalList",
         data: {
           page: this.page,
           limit: this.limit
         }
       })
         .then(res => {
-          this.files = res.data.message;
-          this.length = Math.ceil(res.data.totalLength / this.limit);
+          this.articleList = res.data.message;
+        this.length = Math.ceil(res.data.totalLength / this.limit);
         })
         .catch(err => window.console.log(err));
     },
-    search() {},
-    updateCount(index) {
-      let obj = this.files[index];
-      window.console.log(obj);
-      if (obj.downloadtime) {
-        obj.downloadtime = obj.downloadtime + 1;
-      } else {
-        obj["downloadtime"] = 1;
-      }
-      this.request.post("zlxz/updateFile", { fileInfo: obj });
+    handleRead(index) {
+      let articleId = this.articleList[index]["_id"];
+      this.$router.push("/tszsDetail/" + articleId);
     },
     changePage(page) {
       this.page = page;
-      this.fetchData();
+      this.fetchInfo();
     }
-  }
+  },
 };
 </script>
 

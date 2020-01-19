@@ -77,7 +77,8 @@ const Models = {
     Cbzz: mongoose.model('Cbzz', booksSchema, 'cbzz'),
     Jszl: mongoose.model('Jszl', techSchema, 'jszl'),
     Zlxz: mongoose.model('Zlxz', downloadSchema, 'zlxz'),
+    Tszs: mongoose.model('Tszs', articleSchema, 'tszs'),
     Yhly: mongoose.model('Yhly', messageSchema, 'yhly')
 }
 
-module.exports = Models;
+module.exports = Models;            

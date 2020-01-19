@@ -18,20 +18,20 @@ export default {
     Info,
     Player
   },
-  data(){
-    return{
-      source:{}
-    }
+  data() {
+    return {
+      source: {}
+    };
   },
-  mounted(){
-        if (this.$route.params.id) {
+  mounted() {
+    if (this.$route.params.id) {
       // when article exist
       this.request
         .get("/jszl/articleDetail/" + this.$route.params.id)
         .then(res => {
-         this.source =  res.data.info;
+          this.source = res.data.info;
         });
-        }
+    }
   }
 };
 </script>

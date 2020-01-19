@@ -3,10 +3,14 @@ const Jszl = require("../db").Jszl;
 module.exports = {
   getArticle: async ctx => {
     let page = ctx.request.body.page;
+    if (!page) {
+      page = 1;
+    }
     let limit = ctx.request.body.limit;
+    let totalLength = await Jszl.countDocuments();
     let res = await Jszl.find({})
       .sort({ _id: -1 })
-      .skip(page * limit)
+      .skip((page - 1) * limit)
       .limit(limit);
     let dataSend = [];
     for (let i = 0; i < res.length; i++) {
@@ -24,7 +28,8 @@ module.exports = {
     }
     ctx.body = {
       success: true,
-      message: dataSend
+      message: dataSend,
+      totalLength: totalLength
     };
   },
   getNewestArticle: async ctx => {

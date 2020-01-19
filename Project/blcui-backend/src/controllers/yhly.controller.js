@@ -24,22 +24,29 @@ getAll = async Messages => {
       dataReplied.push(element);
     }
   });
-  return {dataSend, dataReplied};
+  return { dataSend, dataReplied };
 };
-
 
 module.exports = {
   getMessage: async ctx => {
     let page = ctx.request.body.page;
     let limit = ctx.request.body.limit;
-    let Messages = await Yhly.find().sort({ _id: -1 }).skip(page*limit).limit(0);
-    let {dataSend,dataReplied} = await getAll(Messages);
-      ctx.body = {
-        success: true,
-        message: dataSend,
-        showMessage: dataReplied
-      };
-  ;
+    if (!page) {
+      page = 1;
+    }
+
+    let Messages = await Yhly.find()
+      .sort({ _id: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+    let { dataSend, dataReplied } = await getAll(Messages);
+    let totalLength = await Yhly.find({'isreplied':true}).countDocuments();
+    ctx.body = {
+      success: true,
+      message: dataSend,
+      showMessage: dataReplied,
+      totalLength: totalLength
+    };
   },
   saveMessage: async ctx => {
     let request = ctx.request;

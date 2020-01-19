@@ -48,9 +48,24 @@ const routes = [
         component: () => import("../views/fronted/Zlxz.vue")
       },
       {
+        path: "tszs",
+        name: "tszs",
+        component: () => import("../views/fronted/Tszs.vue")
+      },
+      {
+        path: "tszsDetail/:id",
+        name: "tszsdetail",
+        component: () => import("../views/fronted/TszsDetail.vue")
+      },
+      {
         path: "yhlt",
         name: "yhlt",
         component: () => import("../views/fronted/Yhlt.vue")
+      },
+      {
+        path: "search/:keywords",
+        name: "search",
+        component: () => import("../views/fronted/SearchPage.vue")
       }
     ]
   },
@@ -78,14 +93,6 @@ const routes = [
         component: () => import("@/views/back/tabs"),
         meta: {
           title: "选项卡"
-        }
-      },
-      {
-        path: "editdemo",
-        name: "EditDemo",
-        component: () => import("@/views/back/EditDemo"),
-        meta: {
-          title: "编辑测试"
         }
       },
       {
@@ -199,6 +206,30 @@ const routes = [
         meta: {
           title: "用户留言"
         }
+      },
+      {
+        path: "tszs",
+        name: "tszslist",
+        component: () => import("@/views/back/tszs"),
+        meta: {
+          title: "他山之石"
+        }
+      },
+      {
+        path: "tszsedit",
+        name: "tszsedit",
+        component: () => import("@/views/back/tszsEdit"),
+        meta: {
+          title: "他山之石-新增"
+        }
+      },
+      {
+        path: "tszsedit/:id",
+        name: "tszsupdate",
+        component: () => import("@/views/back/jqdtEdit"),
+        meta: {
+          title: "他山之石-编辑"
+        }
       }
     ]
   },
@@ -237,10 +268,10 @@ router.beforeEach((to, from, next) => {
     } else {
       next();
     }
-  }else if(to.path.indexOf("admin") === -1){
+  } else if (to.path.indexOf("admin") === -1) {
     next();
   } else {
-      if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("accessToken")) {
       store.commit("setTabs", {
         name: to.meta.title,
         href: to.path

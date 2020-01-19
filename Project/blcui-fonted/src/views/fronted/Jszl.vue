@@ -19,6 +19,9 @@
         </v-card-actions>
       </v-card>
     </v-flex>
+    <div class="text-center">
+      <v-pagination total-visible="6" v-model="page" :length="length" @input="changePage"></v-pagination>
+    </div>
   </v-layout>
 </template>
 
@@ -27,20 +30,32 @@ export default {
   name: "jszl",
   data() {
     return {
+      page: 1,
+      limit: 5,
+      length: 6,
       news: []
     };
   },
   mounted() {
-    this.request({
-      method: "POST",
-      url: "/jszl/articalList"
-    })
-      .then(res => {
-        this.news = res.data.message;
-      })
-      .catch(err => window.console.log(err));
+    this.fetchInfo();
   },
   methods: {
+    fetchInfo() {
+      this.request({
+        method: "POST",
+        url: "/jszl/articalList",
+        data: {
+          page: this.page,
+          limit: this.limit
+        }
+      })
+        .then(res => {
+          this.news = res.data.message;
+
+          this.length = Math.ceil(res.data.totalLength / this.limit);
+        })
+        .catch(err => window.console.log(err));
+    },
     handleRead(index) {
       let articleId = this.news[index]["_id"];
       let obj = this.news[index];
@@ -57,6 +72,10 @@ export default {
             this.$router.push("/jszlDetail/" + articleId);
           }
         });
+    },
+    changePage(page) {
+      this.page = page;
+      this.fetchInfo();
     }
   }
 };

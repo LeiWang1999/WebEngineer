@@ -45,7 +45,7 @@ export default {
   },
   methods:{
     search(){
-      
+      this.$router.push("/search/" + this.keywords);
     }
   }
 };

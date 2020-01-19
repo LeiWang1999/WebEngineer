@@ -31,7 +31,10 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/jszl/articalList"
+      url: "/jszl/articalList",
+      data:{
+        limit: 9
+      }
     })
       .then(res => {
         this.news = res.data.message;

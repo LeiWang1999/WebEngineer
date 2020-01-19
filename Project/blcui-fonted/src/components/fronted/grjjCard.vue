@@ -2,27 +2,17 @@
   <div>
     <v-dialog v-model="dialog" width="500">
       <v-card hover flat>
-        <v-container fill-height fluid>
-          <v-layout fill-height>
-            <v-flex xs12 align-end flexbox>
-              <span class="headline">个人简介</span>
-            </v-flex>
-          </v-layout>
-        </v-container>
-        <v-card-title>
-          <v-container>
-            <v-layout column align-center>
-              <v-flex mt-5>
-                <v-avatar size="150" color="red">
-                  <img :src="avatarBase64" alt="个人头像" />
-                </v-avatar>
-              </v-flex>
-            </v-layout>
-          </v-container>
+        <v-card-title primary-title>
+          <v-img class="white--text" height="250px" :src="avatarBase64">
+            <v-container fill-height fluid>
+              <v-layout fill-height>
+                <v-flex xs12 align-end flexbox>
+                  <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">个人简介</h2>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-img>
         </v-card-title>
-        <v-card-text>
-          <h2 align="center">崔北亮</h2>
-        </v-card-text>
         <v-card-text>
           <div v-html="detailContent"></div>
         </v-card-text>
@@ -33,24 +23,15 @@
       </v-card>
     </v-dialog>
     <v-card hover flat>
-      <v-container fill-height fluid>
-        <v-layout fill-height>
-          <v-flex xs12 align-end flexbox>
-            <span class="headline">个人简介</span>
-          </v-flex>
-        </v-layout>
-      </v-container>
-      <v-card-title>
-        <v-container>
-          <v-layout column align-center>
-            <v-flex mt-5>
-              <v-avatar size="150" color="red">
-                <img :src="avatarBase64" alt="个人头像" />
-              </v-avatar>
+      <v-img class="white--text" height="200px" :src="avatarBase64">
+        <v-container fill-height fluid>
+          <v-layout fill-height>
+            <v-flex xs12 align-end flexbox>
+              <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">个人简介</h2>
             </v-flex>
           </v-layout>
         </v-container>
-      </v-card-title>
+      </v-img>
       <v-card-text>
         <h2 align="center">崔北亮</h2>
       </v-card-text>
@@ -74,9 +55,9 @@ export default {
   data() {
     return {
       content: "",
-      avatarBase64:"",
+      avatarBase64: "",
       dialog: false,
-      detailContent:""
+      detailContent: ""
     };
   },
   mounted() {

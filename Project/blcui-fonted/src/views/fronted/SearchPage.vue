@@ -15,56 +15,49 @@
             </span>
           </v-card-text>
           <v-card-text class="content">{{item.gist}}</v-card-text>
-          <v-btn color="primary" text @click="handleRead(i)">阅读原文 »</v-btn>
+          <v-btn v-if="item.type=='zlxz'" color="primary" :href="item.downloadlink" text>点击下载</v-btn>
+          <v-btn v-else color="primary" text @click="handleRead(i)">阅读原文 »</v-btn>
         </v-card>
       </v-flex>
     </v-layout>
-
-    <div class="text-center">
-      <v-pagination total-visible="6" v-model="page" :length="length" @input="changePage"></v-pagination>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "jszl",
+  name: "search",
   data() {
     return {
-      length: 0,
-      page: 1,
-      limit: 5,
       articleList: []
     };
   },
   mounted() {
-    this.fetchInfo();
+    let keywords = this.$route.params.keywords;
+    this.fetchInfo(keywords);
   },
-  methods: {
-    fetchInfo() {
-      this.request({
-        method: "POST",
-        url: "/jqdt/articalList",
-        data: {
-          page: this.page,
-          limit: this.limit
-        }
-      })
-        .then(res => {
-          this.articleList = res.data.message;
-        this.length = Math.ceil(res.data.totalLength / this.limit);
-        })
-        .catch(err => window.console.log(err));
-    },
-    handleRead(index) {
-      let articleId = this.articleList[index]["_id"];
-      this.$router.push("/jqdtDetail/" + articleId);
-    },
-    changePage(page) {
-      this.page = page;
-      this.fetchInfo();
+  computed: {
+    newKeyword() {
+      return this.$route.params.keywords;
     }
   },
+  watch: {
+    newKeyword(val) {
+      this.fetchInfo(val);
+    }
+  },
+  methods: {
+    fetchInfo(keywords) {
+      this.request({
+        method: "POST",
+        url: "/user/search",
+        data: {
+          keywords: keywords
+        }
+      }).then(res => {
+        this.articleList = res.data.result;
+      });
+    }
+  }
 };
 </script>
 

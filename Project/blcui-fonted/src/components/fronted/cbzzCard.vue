@@ -1,6 +1,6 @@
 <template>
-<v-card hover flat>
-<v-card-title primary-title>
+  <v-card hover flat>
+    <v-card-title primary-title>
       <h2 class="headline blue--text">出版专著</h2>
     </v-card-title>
     <v-card-text>
@@ -13,10 +13,10 @@
         </li>
       </ul>
     </v-card-text>
-  <v-card-actions>
-    <v-btn text outlined dark color="purple" router to="/cbzz" >了解更多</v-btn>
-  </v-card-actions>
-</v-card>
+    <v-card-actions>
+      <v-btn text outlined dark color="purple" router to="/cbzz">了解更多</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -30,10 +30,13 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/cbzz/bookList"
+      url: "/cbzz/bookList",
+      data: {
+        limit: 9
+      }
     })
       .then(res => {
-        this.books = res.data.message.slice(0,5);
+        this.books = res.data.message;
       })
       .catch(err => window.console.log(err));
   }

@@ -7,13 +7,13 @@ const {
   CbzzController,
   JszlController,
   ZlxzController,
-  YhlyController
+  YhlyController,
+  TszsController
 } = require("./controllers");
 
-const userRoutes = new Router({ prefix: "/user" }).get(
-  "/detail",
-  UserController.getDetail
-);
+const userRoutes = new Router({ prefix: "/user" })
+  .get("/detail", UserController.getDetail)
+  .post("/search", UserController.search);
 const jqdtRoutes = new Router({ prefix: "/jqdt" })
   .get("/articleDetail/:id", JqdtController.getOneArticle)
   .post("/articalList", JqdtController.getArticle)
@@ -30,23 +30,31 @@ const cbzzRoutes = new Router({ prefix: "/cbzz" })
   .post("/saveBook", CbzzController.saveBook)
   .post("/updateBook", CbzzController.updateBook)
   .post("/deleteBook", CbzzController.deleteBook);
-  const jszlRoutes = new Router({ prefix: "/jszl" })
+const jszlRoutes = new Router({ prefix: "/jszl" })
   .get("/articleDetail/:id", JszlController.getOneArticle)
   .post("/articalList", JszlController.getArticle)
   .post("/saveArticle", JszlController.saveArticle)
   .post("/updateArticle", JszlController.updateArticle)
-  .post("/deleteArticle", JszlController.deleteArticle)
-  const zlxzRoutes = new Router({ prefix: "/zlxz" })
+  .post("/deleteArticle", JszlController.deleteArticle);
+const zlxzRoutes = new Router({ prefix: "/zlxz" })
   .get("/fileDetail/:id", ZlxzController.getOneFile)
   .post("/fileList", ZlxzController.getFile)
   .post("/saveFile", ZlxzController.saveFile)
   .post("/updateFile", ZlxzController.updateFile)
-  .post("/deleteFile", ZlxzController.deleteFile)
-  const yhlyRoutes = new Router({ prefix: "/yhly" })
+  .post("/deleteFile", ZlxzController.deleteFile);
+const yhlyRoutes = new Router({ prefix: "/yhly" })
   .post("/messageList", YhlyController.getMessage)
   .post("/updateMessage", YhlyController.updateMessage)
   .post("/deleteMessage", YhlyController.deleteMessage)
-  .post("/saveMessage",YhlyController.saveMessage)
+  .post("/saveMessage", YhlyController.saveMessage);
+const tszsRoutes = new Router({ prefix: "/tszs" })
+  .get("/articleDetail/:id", TszsController.getOneArticle)
+  .post("/articalList", TszsController.getArticle)
+  .post("/saveArticle", TszsController.saveArticle)
+  .post("/updateArticle", TszsController.updateArticle)
+  .post("/deleteArticle", TszsController.deleteArticle)
+  .post("/uploadImage", TszsController.uploadImage);
+
 PREFIX = "/api";
 const router = new Router({ prefix: PREFIX })
   .use(userRoutes.routes())
@@ -55,6 +63,7 @@ const router = new Router({ prefix: PREFIX })
   .use(cbzzRoutes.routes())
   .use(jszlRoutes.routes())
   .use(zlxzRoutes.routes())
-  .use(yhlyRoutes.routes());
+  .use(yhlyRoutes.routes())
+  .use(tszsRoutes.routes());
 
 module.exports = () => compose([router.routes(), router.allowedMethods()]);

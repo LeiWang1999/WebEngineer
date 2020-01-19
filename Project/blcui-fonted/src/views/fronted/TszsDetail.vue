@@ -9,7 +9,7 @@
           </span>
         </div>
         <div class="detail" v-if="content">
-          <p v-html="content"></p>
+          <div v-html="content"></div>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
     if (this.$route.params.id) {
       // when article exist
       this.request
-        .get("/jqdt/articleDetail/" + this.$route.params.id)
+        .get("/tszs/articleDetail/" + this.$route.params.id)
         .then(res => {
           let article = res.data.info;
           window.console.log(res.data);
@@ -74,7 +74,7 @@ export default {
             obj["clicktime"] = 1;
           }
           this.request
-            .post("jqdt/updateArticle", { articleInfo: obj })
+            .post("tszs/updateArticle", { articleInfo: obj })
             .then(res => {
               if (res.data.success == true) {
                 window.console.log("获取成功");
@@ -86,7 +86,7 @@ export default {
   methods: {
     fecthData() {
       this.request
-        .get("/jqdt/articleDetail/" + this.$route.params.id)
+        .get("/tszs/articleDetail/" + this.$route.params.id)
         .then(res => {
           let article = res.data.info;
           window.console.log(res.data);
@@ -102,7 +102,7 @@ export default {
     },
     toGo(id) {
       if (id) {
-        this.$router.push({ path: `/jqdtDetail/${id}` });
+        this.$router.push({ path: `/tszsDetail/${id}` });
         this.fecthData();
       }
     }
@@ -137,6 +137,36 @@ export default {
       vertical-align: middle;
       & > span {
         margin-right: 5px;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20%;
+    border-radius: 6px;
+    .btn {
+      text-align: center;
+      background: #fff;
+      color: #666;
+      padding: 10px;
+      flex: 1;
+      border: 1px solid #ddd;
+      transition: all 0.3s;
+      overflow: hidden;
+      cursor: pointer;
+      &:hover {
+        background: #3b99fc;
+        color: #fff;
+      }
+      p {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &.prev {
+        border-right: none;
       }
     }
   }

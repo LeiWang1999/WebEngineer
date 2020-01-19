@@ -1,4 +1,4 @@
-const Jqdt = require("../db").Jqdt;
+const Tszs = require("../db").Tszs;
 const multiparty = require("multiparty");
 const fs = require("fs");
 const path = require("path");
@@ -10,11 +10,11 @@ module.exports = {
     if (!page) {
       page = 1;
     }
-    let result = await Jqdt.find({})
+    let result = await Tszs.find({})
       .sort({ _id: -1 })
       .skip((page - 1) * limit)
       .limit(limit);
-    let totalLength = await Jqdt.countDocuments();
+    let totalLength = await Tszs.countDocuments();
     let dataSend = [];
     for (let i = 0; i < result.length; i++) {
       const element = result[i];
@@ -42,20 +42,20 @@ module.exports = {
     let res = {};
     let otherinfo = {};
 
-    await Jqdt.findOne({ _id: articleId }, (err, res1) => {
+    await Tszs.findOne({ _id: articleId }, (err, res1) => {
       if (err) throw err;
       else {
         res = res1;
       }
     });
-    await Jqdt.find({ _id: { $gt: ctx.params.id } }, (err, res2) => {
+    await Tszs.find({ _id: { $gt: ctx.params.id } }, (err, res2) => {
       if (err) throw err;
       if (res2.length > 0) {
         prev.title = res2[0]["title"];
         prev._id = res2[0]["_id"];
       }
     });
-    await Jqdt.find({ _id: { $lt: ctx.params.id } }, (err, res3) => {
+    await Tszs.find({ _id: { $lt: ctx.params.id } }, (err, res3) => {
       if (err) throw err;
       if (res3.length > 0) {
         next.title = res3[res3.length - 1]["title"];
@@ -74,7 +74,7 @@ module.exports = {
     let request = ctx.request;
     let articleInfo = request.body["articleInfo"];
     console.log(articleInfo);
-    let newArticle = new Jqdt(articleInfo);
+    let newArticle = new Tszs(articleInfo);
     await newArticle.save(err => {
       if (err) throw err;
       else {
@@ -94,7 +94,7 @@ module.exports = {
     let request = ctx.request;
     let articleInfo = request.body["articleInfo"];
     console.log(articleInfo);
-    await Jqdt.findById(articleInfo._id, (err, res) => {
+    await Tszs.findById(articleInfo._id, (err, res) => {
       if (err) throw err;
       else {
         let obj = {
@@ -104,7 +104,7 @@ module.exports = {
           content: articleInfo.content,
           clicktime: articleInfo.clicktime
         };
-        Jqdt.updateOne({ _id: articleInfo._id }, obj, err => {
+        Tszs.updateOne({ _id: articleInfo._id }, obj, err => {
           if (err) throw err;
           else console.log("更新" + articleInfo._id + "成功");
         });
@@ -119,7 +119,7 @@ module.exports = {
     let request = ctx.request;
     let articleId = request.body["articleId"];
     console.log(articleId);
-    await Jqdt.deleteOne({ _id: articleId }, (err, res) => {
+    await Tszs.deleteOne({ _id: articleId }, (err, res) => {
       if (err) throw err;
     });
     ctx.body = {
@@ -132,9 +132,9 @@ module.exports = {
     let D = Date.now();
     let saveImg = path.join(
       __dirname,
-      "../../../blcui-fonted/public/image/jqdt/" + D + ".jpg"
+      "../../../blcui-fonted/public/image/Tszs/" + D + ".jpg"
     );
-    let sendPath = "/image/jqdt/" + D + ".jpg";
+    let sendPath = "/image/Tszs/" + D + ".jpg";
     form.parse(ctx.req, (err, fields, files) => {
       let input = files.upload_file[0];
       const reader = fs.createReadStream(input.path); // 创建可读流

@@ -31,7 +31,10 @@ export default {
   mounted() {
     this.request({
       method: "POST",
-      url: "/zlxz/fileList"
+      url: "/zlxz/fileList",
+      data:{
+        limit: 9
+      }
     })
       .then(res => {
         this.files = res.data.message;

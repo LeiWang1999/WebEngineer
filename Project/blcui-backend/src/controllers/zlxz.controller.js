@@ -4,9 +4,13 @@ module.exports = {
   getFile: async ctx => {
     let page = ctx.request.body.page;
     let limit = ctx.request.body.limit;
+    if (!page) {
+      page = 1;
+    }
+    let totalLength = await Zlxz.countDocuments();
     let res = await Zlxz.find({})
       .sort({ date: -1 })
-      .skip(page * limit)
+      .skip((page-1) * limit)
       .limit(limit);
 
     let dataSend = [];
@@ -24,7 +28,8 @@ module.exports = {
     }
     ctx.body = {
       success: true,
-      message: dataSend
+      message: dataSend,
+      totalLength: totalLength
     };
   },
 

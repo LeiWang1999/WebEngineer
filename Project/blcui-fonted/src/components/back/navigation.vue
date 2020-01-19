@@ -60,11 +60,6 @@ export default {
         items: [
           {
             icon: "mdi-tab",
-            title: "编辑器测试",
-            to: "/admin/editdemo"
-          },
-          {
-            icon: "mdi-tab",
             title: "个人简介",
             to: "/admin/grjj"
           },
@@ -90,20 +85,15 @@ export default {
           },
           {
             icon: "mdi-tab",
-            title: "用户留言",
-            to: "/admin/message"
+            title: "他山之石",
+            to: "/admin/tszs"
           },
           {
             icon: "mdi-tab",
-            title: "人生信条",
-            to: "/admin/table"
+            title: "用户留言",
+            to: "/admin/message"
           }
         ]
-      },
-      {
-        icon: "mdi-tab",
-        title: "选项卡",
-        to: "/admin/tabs"
       }
     ]
   }),
