@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
-      <v-flex xs12 sm12>
+      <v-flex offset-xs2 xs12 md8>
         <Info :source="source" />
         <Player :source="source" />
       </v-flex>

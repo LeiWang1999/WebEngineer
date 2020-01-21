@@ -22,6 +22,23 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="mailDialog" width="400">
+      <v-card hover flat>
+        <v-card-title primary-title>怎样联系我</v-card-title>
+        <v-card-text>
+          <span>邮箱:</span>
+          <a href="mailto:cbl@njut.edu.cn">cbl@njut.edu.cn</a>
+        </v-card-text>
+        <v-card-text>
+          <span>联系电话:</span>
+          <span class="black--text">025-83172361/83172367</span>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="mailDialog = false">确定</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-card hover flat>
       <v-img class="white--text" height="200px" :src="avatarBase64">
         <v-container fill-height fluid>
@@ -42,7 +59,7 @@
         <v-btn text outlined dark color="black" @click="showDialog">了解更多</v-btn>
         <v-spacer></v-spacer>
         <v-btn icon>
-          <v-icon color="grey">mdi-email</v-icon>
+          <v-icon color="grey" @click="mailDialog = true">mdi-email</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -57,6 +74,7 @@ export default {
       content: "",
       avatarBase64: "",
       dialog: false,
+      mailDialog: false,
       detailContent: ""
     };
   },

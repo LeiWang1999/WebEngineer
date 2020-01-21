@@ -19,9 +19,11 @@ module.exports = {
         _id: element["_id"],
         name: element["name"],
         gist: element["gist"],
+        content: element["content"],
         coverBase64: element["coverBase64"],
         buylink: element["buylink"],
-        updatetime: element["updatetime"]
+        updatetime: element["updatetime"],
+        clicktime: element["clicktime"]
       };
       dataSend.push(obj);
     }
@@ -34,15 +36,28 @@ module.exports = {
 
   getOneBook: async ctx => {
     let bookId = ctx.params.id;
-    await Cbzz.findOne({ _id: bookId }, (err, res) => {
-      if (err) throw err;
-      else {
-        ctx.body = {
-          success: true,
-          info: res
-        };
-      }
-    });
+    let prev = {};
+    let next = {};
+    let otherinfo = {};
+    let res1 = await Cbzz.findOne({ _id: bookId });
+    let res2 = await Cbzz.find({ _id: { $gt: bookId } });
+    if (res2.length > 0) {
+      prev.name = res2[0]["name"];
+      prev._id = res2[0]["_id"];
+    }
+    let res3 = await Cbzz.find({ _id: { $lt: bookId } });
+
+    if (res3.length > 0) {
+      next.name = res3[res3.length - 1]["name"];
+      next._id = res3[res3.length - 1]["_id"];
+    }
+    otherinfo.prev = prev;
+    otherinfo.next = next;
+    ctx.body = {
+      success: true,
+      info: res1,
+      otherinfo: otherinfo
+    };
   },
   saveBook: async ctx => {
     let request = ctx.request;
@@ -75,7 +90,10 @@ module.exports = {
           date: bookInfo.date,
           coverBase64: bookInfo.coverBase64,
           gist: bookInfo.gist,
-          content: bookInfo.content
+          updatetime: bookInfo.updatetime,
+          buylink: bookInfo.buylink,
+          content: bookInfo.content,
+          clicktime: bookInfo.clicktime
         };
         Cbzz.updateOne({ _id: bookInfo._id }, obj, err => {
           if (err) throw err;

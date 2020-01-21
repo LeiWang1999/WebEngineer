@@ -35,14 +35,17 @@ const grjjSchema = new mongoose.Schema({
 const booksSchema = new mongoose.Schema({
     name: String,
     gist: String,
+    content: String,
     coverBase64: String,
     buylink: String,
     updatetime: String,
+    clicktime: Number
 })
 //技术专栏
 const techSchema = new mongoose.Schema({
     title: String,
     gist: String,
+    content:String,
     videolink: String,
     createtime: String,
     updatetime: String,
@@ -68,6 +71,16 @@ const messageSchema = new mongoose.Schema({
     replycontent: String,
     replytime: String
 })
+// 访问记录
+const historySchema = new mongoose.Schema({
+    cip:String,
+    cid:String,
+    cname:String,
+    os:String,
+    browser:String,
+    browserVersion:String,
+    date:String,
+})
 /************** 定义模型Model **************/
 
 const Models = {
@@ -78,7 +91,8 @@ const Models = {
     Jszl: mongoose.model('Jszl', techSchema, 'jszl'),
     Zlxz: mongoose.model('Zlxz', downloadSchema, 'zlxz'),
     Tszs: mongoose.model('Tszs', articleSchema, 'tszs'),
-    Yhly: mongoose.model('Yhly', messageSchema, 'yhly')
+    Yhly: mongoose.model('Yhly', messageSchema, 'yhly'),
+    History: mongoose.model('History', historySchema, 'history')
 }
 
 module.exports = Models;            

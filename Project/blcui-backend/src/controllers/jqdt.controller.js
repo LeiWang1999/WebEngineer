@@ -39,34 +39,25 @@ module.exports = {
     let articleId = ctx.params.id;
     let prev = {};
     let next = {};
-    let res = {};
     let otherinfo = {};
 
-    await Jqdt.findOne({ _id: articleId }, (err, res1) => {
-      if (err) throw err;
-      else {
-        res = res1;
-      }
-    });
-    await Jqdt.find({ _id: { $gt: ctx.params.id } }, (err, res2) => {
-      if (err) throw err;
-      if (res2.length > 0) {
-        prev.title = res2[0]["title"];
-        prev._id = res2[0]["_id"];
-      }
-    });
-    await Jqdt.find({ _id: { $lt: ctx.params.id } }, (err, res3) => {
-      if (err) throw err;
-      if (res3.length > 0) {
-        next.title = res3[res3.length - 1]["title"];
-        next._id = res3[res3.length - 1]["_id"];
-      }
-      otherinfo.prev = prev;
-      otherinfo.next = next;
-    });
+    let res1 = await Jqdt.findOne({ _id: articleId });
+    let res2 = await Jqdt.find({ _id: { $gt: ctx.params.id } });
+    if (res2.length > 0) {
+      prev.title = res2[0]["title"];
+      prev._id = res2[0]["_id"];
+    }
+    let res3 = await Jqdt.find({ _id: { $lt: ctx.params.id } });
+
+    if (res3.length > 0) {
+      next.title = res3[res3.length - 1]["title"];
+      next._id = res3[res3.length - 1]["_id"];
+    }
+    otherinfo.prev = prev;
+    otherinfo.next = next;
     ctx.body = {
       success: true,
-      info: res,
+      info: res1,
       otherinfo: otherinfo
     };
   },

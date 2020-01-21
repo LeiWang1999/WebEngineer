@@ -16,6 +16,8 @@
             <p>{{book.gist}}</p>
           </v-card-text>
           <v-card-actions>
+            <v-btn text color="primary" router :to="'/cbzzDetail/'+book._id">查看详情</v-btn>
+            <v-spacer></v-spacer>
             <v-btn text color="red" :href="book.buylink">点击购买</v-btn>
           </v-card-actions>
         </v-card>

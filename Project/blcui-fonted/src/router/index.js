@@ -15,57 +15,110 @@ const routes = [
       {
         path: "home",
         name: "home",
-        component: () => import("../views/fronted/Home.vue")
+        component: () => import("../views/fronted/Home.vue"),
+        meta: {
+          level: 1,
+          title: "主页"
+        }
       },
       {
         path: "jqdt",
         name: "jqdt",
-        component: () => import("../views/fronted/Jqdt.vue")
+        component: () => import("../views/fronted/Jqdt.vue"),
+        meta: {
+          level: 2,
+          title: "近期动态"
+        }
       },
       {
         path: "jqdtDetail/:id",
         name: "jqdtdetail",
-        component: () => import("../views/fronted/JqdtDetail.vue")
+        component: () => import("../views/fronted/JqdtDetail.vue"),
+        meta: {
+          level: 2,
+          title: "近期动态-详情"
+        }
       },
       {
         path: "cbzz",
         name: "cbzz",
-        component: () => import("../views/fronted/Cbzz.vue")
+        component: () => import("../views/fronted/Cbzz.vue"),
+        meta: {
+          level: 2,
+          title: "出版专著"
+        }
+      },
+      {
+        path: "cbzzDetail/:id",
+        name: "cbzzdetail",
+        component: () => import("../views/fronted/CbzzDetail.vue"),
+        meta: {
+          level: 2,
+          title: "出版专著-详情"
+        }
       },
       {
         path: "jszl",
         name: "jszl",
-        component: () => import("../views/fronted/Jszl.vue")
+        component: () => import("../views/fronted/Jszl.vue"),
+        meta: {
+          level: 2,
+          title: "技术专栏"
+        }
       },
       {
         path: "jszlDetail/:id",
         name: "jszldetail",
-        component: () => import("../views/fronted/JszlDetail.vue")
+        component: () => import("../views/fronted/JszlDetail.vue"),
+        meta: {
+          level: 2,
+          title: "技术专栏-详情"
+        }
       },
       {
         path: "zlxz",
         name: "zlxz",
-        component: () => import("../views/fronted/Zlxz.vue")
+        component: () => import("../views/fronted/Zlxz.vue"),
+        meta: {
+          level: 2,
+          title: "资料下载"
+        }
       },
       {
         path: "tszs",
         name: "tszs",
-        component: () => import("../views/fronted/Tszs.vue")
+        component: () => import("../views/fronted/Tszs.vue"),
+        meta: {
+          level: 2,
+          title: "他山之石"
+        }
       },
       {
         path: "tszsDetail/:id",
         name: "tszsdetail",
-        component: () => import("../views/fronted/TszsDetail.vue")
+        component: () => import("../views/fronted/TszsDetail.vue"),
+        meta: {
+          level: 2,
+          title: "他山之石-详情"
+        }
       },
       {
         path: "yhlt",
         name: "yhlt",
-        component: () => import("../views/fronted/Yhlt.vue")
+        component: () => import("../views/fronted/Yhlt.vue"),
+        meta: {
+          level: 2,
+          title: "用户留言"
+        }
       },
       {
         path: "search/:keywords",
         name: "search",
-        component: () => import("../views/fronted/SearchPage.vue")
+        component: () => import("../views/fronted/SearchPage.vue"),
+        meta: {
+          level: 2,
+          title: "搜索结果"
+        }
       }
     ]
   },

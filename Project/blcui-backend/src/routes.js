@@ -8,7 +8,8 @@ const {
   JszlController,
   ZlxzController,
   YhlyController,
-  TszsController
+  TszsController,
+  HistoryController
 } = require("./controllers");
 
 const userRoutes = new Router({ prefix: "/user" })
@@ -54,7 +55,9 @@ const tszsRoutes = new Router({ prefix: "/tszs" })
   .post("/updateArticle", TszsController.updateArticle)
   .post("/deleteArticle", TszsController.deleteArticle)
   .post("/uploadImage", TszsController.uploadImage);
-
+const historyRoutes = new Router({ prefix: "/history"})
+  .post("/getVisit",HistoryController.getCount)
+  .post("/updateHistory", HistoryController.updateHistory)
 PREFIX = "/api";
 const router = new Router({ prefix: PREFIX })
   .use(userRoutes.routes())
@@ -64,6 +67,7 @@ const router = new Router({ prefix: PREFIX })
   .use(jszlRoutes.routes())
   .use(zlxzRoutes.routes())
   .use(yhlyRoutes.routes())
-  .use(tszsRoutes.routes());
+  .use(tszsRoutes.routes())
+  .use(historyRoutes.routes());
 
 module.exports = () => compose([router.routes(), router.allowedMethods()]);

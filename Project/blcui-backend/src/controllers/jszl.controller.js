@@ -19,6 +19,7 @@ module.exports = {
         _id: element["_id"],
         createtime: element["createtime"],
         updatetime: element["updatetime"],
+        content: element["content"],
         title: element["title"],
         gist: element["gist"],
         videolink: element["videolink"],
@@ -79,6 +80,7 @@ module.exports = {
           title: articleInfo.title,
           updatetime: articleInfo.updatetime,
           gist: articleInfo.gist,
+          content: articleInfo.content,
           videolink: articleInfo.videolink,
           clicktime: articleInfo.clicktime
         };

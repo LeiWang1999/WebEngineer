@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-layout column justify-center align-center class="index-container">
       <v-flex xs12 sm8 md6 class="card-container">
         <v-card class="card" v-for="(item,i) in articleList" :key="i">
@@ -16,11 +15,11 @@
           </v-card-text>
           <v-card-text class="content">{{item.gist}}</v-card-text>
           <v-btn v-if="item.type=='zlxz'" color="primary" :href="item.downloadlink" text>点击下载</v-btn>
-          <v-btn v-else color="primary" text @click="handleRead(i)">阅读原文 »</v-btn>
+          <v-btn v-if="item.type=='cbzz'" color="primary" :href="'/cbzzDetail/'+item._id" text>了解更多</v-btn>
+          <v-btn v-else color="primary" text @click="handleRead(item._id, item.type)">阅读原文 »</v-btn>
         </v-card>
       </v-flex>
     </v-layout>
-  </div>
 </template>
 
 <script>
@@ -56,6 +55,9 @@ export default {
       }).then(res => {
         this.articleList = res.data.result;
       });
+    },
+    handleRead(id, type) {
+      this.$router.push('/'+type+'Detail/' + id);
     }
   }
 };
