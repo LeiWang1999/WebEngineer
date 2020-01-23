@@ -9,7 +9,7 @@
               <span class="date">
                 <i class="iconfont icon-date">创建时间:{{date}}</i>
               </span>
-                            <span class="date">
+              <span class="date">
                 <i class="iconfont icon-date">阅读次数:{{clicktime}}</i>
               </span>
             </div>
@@ -63,6 +63,8 @@ export default {
           let otherinfo = res.data.otherinfo;
           this.prev = otherinfo.prev;
           this.next = otherinfo.next;
+          this.$store.commit("setLevel", 3);
+          this.$store.commit("setTitle", ["导航", "近期动态", article.title]);
         })
         .then(() => {
           let articleId = this.$route.params.id;

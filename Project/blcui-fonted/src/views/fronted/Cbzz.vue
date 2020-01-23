@@ -40,6 +40,8 @@ export default {
     };
   },
   mounted() {
+    this.$store.commit("setLevel", 2);
+    this.$store.commit("setTitle", ["导航", "出版专著"]);
     this.fetchInfo();
   },
   methods: {

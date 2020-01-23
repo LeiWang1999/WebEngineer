@@ -42,6 +42,10 @@ export default {
     CbzzCard,
     JszlCard,
     ZlxzCard
+  },
+  mounted() {
+    this.$store.commit("setLevel", 1);
+    this.$store.commit("setTitle", ["导航"]);
   }
 };
 </script>

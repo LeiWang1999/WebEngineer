@@ -1,32 +1,32 @@
 <template>
-    <v-layout row wrap pa-12>
-      <v-flex offset-xs2 xs12 md8>
-        <div class="page">
-          <div class="wrapper">
-            <h1 class="title">《{{name}}》</h1>
-            <div class="some">
-              <span class="date">
-                <i class="iconfont icon-date">更新时间:{{updatetime}}</i>
-              </span>
-              <span class="date">
-                <i class="iconfont icon-date">阅读次数:{{clicktime}}</i>
-              </span>
-            </div>
-            <div class="detail" v-if="content">
-              <div v-html="content"></div>
-            </div>
-            <v-btn absolute left bottom text @click="toGo(prev._id)">
-              <span class="grey--text">上一篇:</span>
-              {{prev.name?prev.name:'没有更多'}}
-            </v-btn>
-            <v-btn absolute right bottom text @click="toGo(next._id)">
-              <span class="grey--text">下一篇:</span>
-              {{next.name?next.name:'没有更多'}}
-            </v-btn>
+  <v-layout row wrap pa-12>
+    <v-flex offset-xs2 xs12 md8>
+      <div class="page">
+        <div class="wrapper">
+          <h1 class="title">《{{name}}》</h1>
+          <div class="some">
+            <span class="date">
+              <i class="iconfont icon-date">更新时间:{{updatetime}}</i>
+            </span>
+            <span class="date">
+              <i class="iconfont icon-date">阅读次数:{{clicktime}}</i>
+            </span>
           </div>
+          <div class="detail" v-if="content">
+            <div v-html="content"></div>
+          </div>
+          <v-btn absolute left bottom text @click="toGo(prev._id)">
+            <span class="grey--text">上一篇:</span>
+            {{prev.name?prev.name:'没有更多'}}
+          </v-btn>
+          <v-btn absolute right bottom text @click="toGo(next._id)">
+            <span class="grey--text">下一篇:</span>
+            {{next.name?next.name:'没有更多'}}
+          </v-btn>
         </div>
-      </v-flex>
-    </v-layout>
+      </div>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -88,6 +88,9 @@ export default {
             obj["clicktime"] = 1;
           }
           this.request.post("cbzz/updateBook", { bookInfo: obj });
+
+          this.$store.commit("setLevel", 3);
+          this.$store.commit("setTitle", ["导航", "出版专著", this.name]);
         });
     },
     getDate: function() {

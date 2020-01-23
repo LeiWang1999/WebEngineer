@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Navbar from "@/components/fronted/Navbar";
 import pageFooter from "@/components/fronted/pageFooter";
 export default {
@@ -41,7 +42,8 @@ export default {
         disabled: true,
         href: "breadcrumbs_link_2"
       }
-    ]
+    ],
+    currentIterm:[]
   }),
   mounted() {
     this.request.get("http://pv.sohu.com/cityjson?ie=utf-8").then(res => {
@@ -134,17 +136,21 @@ export default {
     }
   },
   computed: {
-    currentIterm() {
-      let highestLevel = this.$route.meta.level;
+    ...mapGetters(["title"]),
+  },
+  watch: {
+    title() {
+      let highestLevel = this.$store.getters.level;
+      let title = this.$store.getters.title;
+      window.console.log(highestLevel);
       if (highestLevel === 1) {
         let obj = {};
         let iterms = [];
-
         obj.text = "导航";
         obj.disabled = true;
         obj.href = "/home";
         iterms.push(obj);
-        return iterms;
+        this.currentIterm = iterms;
       } else if (highestLevel === 2) {
         let obj1 = {};
         let obj2 = {};
@@ -153,13 +159,29 @@ export default {
         obj1.disabled = false;
         obj1.href = "/home";
         iterms.push(obj1);
-        obj2.text = this.$route.meta.title;
+        obj2.text = title[1];
         obj2.disabled = true;
         obj2.href = this.$route.fullPath;
         iterms.push(obj2);
-        return iterms;
+        this.currentIterm = iterms;
       } else {
-        return [];
+        let obj1 = {};
+        let obj2 = {};
+        let obj3 = {};
+        let iterms = [];
+        obj1.text = "导航";
+        obj1.disabled = false;
+        obj1.href = "/home";
+        iterms.push(obj1);
+        obj2.text = title[1];
+        obj2.disabled = true;
+        obj2.href = this.$route.fullPath;
+        iterms.push(obj2);
+        obj3.text = title[2];
+        obj3.disabled = true;
+        obj3.href = "";
+        iterms.push(obj3);
+        this.currentIterm = iterms;
       }
     }
   }

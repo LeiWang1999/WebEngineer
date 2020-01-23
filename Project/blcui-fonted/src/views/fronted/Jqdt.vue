@@ -38,6 +38,8 @@ export default {
     };
   },
   mounted() {
+      this.$store.commit("setLevel", 2);
+    this.$store.commit("setTitle", ["导航", "近期动态"]);
     this.fetchInfo();
   },
   methods: {

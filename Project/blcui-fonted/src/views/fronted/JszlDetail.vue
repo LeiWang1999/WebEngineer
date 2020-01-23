@@ -32,6 +32,8 @@ export default {
           this.source = res.data.info;
         });
     }
+      this.$store.commit("setLevel", 3);
+    this.$store.commit("setTitle", ["导航", "技术专栏", this.source.title]);
   }
 };
 </script>

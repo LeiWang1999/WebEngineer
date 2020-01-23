@@ -101,6 +101,8 @@ export default {
     };
   },
   mounted() {
+      this.$store.commit("setLevel", 2);
+    this.$store.commit("setTitle", ["导航", "用户留言"]);
     this.fetchInfo();
   },
   methods: {

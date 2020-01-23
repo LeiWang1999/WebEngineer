@@ -81,8 +81,12 @@ export default {
               if (res.data.success == true) {
                 window.console.log("获取成功");
               }
+                this.$store.commit("setLevel", 3);
+    this.$store.commit("setTitle", ["导航", "他山之石", this.title]);
             });
+            
         });
+        
     }
   },
   methods: {

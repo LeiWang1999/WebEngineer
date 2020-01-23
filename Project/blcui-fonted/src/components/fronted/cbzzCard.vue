@@ -3,7 +3,7 @@
     <v-card-title primary-title>
       <h2 class="headline blue--text">出版专著</h2>
       <v-spacer></v-spacer>
-      <v-btn  icon color="blue" router to="/cbzz">
+      <v-btn icon color="blue" router to="/cbzz">
         <v-icon>mdi-chevron-double-right</v-icon>
       </v-btn>
     </v-card-title>

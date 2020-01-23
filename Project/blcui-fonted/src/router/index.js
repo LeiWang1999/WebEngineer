@@ -35,8 +35,8 @@ const routes = [
         name: "jqdtdetail",
         component: () => import("../views/fronted/JqdtDetail.vue"),
         meta: {
-          level: 2,
-          title: "近期动态-详情"
+          level: 3,
+          title: "近期动态"
         }
       },
       {
@@ -53,8 +53,8 @@ const routes = [
         name: "cbzzdetail",
         component: () => import("../views/fronted/CbzzDetail.vue"),
         meta: {
-          level: 2,
-          title: "出版专著-详情"
+          level: 3,
+          title: "出版专著"
         }
       },
       {
@@ -71,8 +71,8 @@ const routes = [
         name: "jszldetail",
         component: () => import("../views/fronted/JszlDetail.vue"),
         meta: {
-          level: 2,
-          title: "技术专栏-详情"
+          level: 3,
+          title: "技术专栏"
         }
       },
       {
@@ -98,8 +98,8 @@ const routes = [
         name: "tszsdetail",
         component: () => import("../views/fronted/TszsDetail.vue"),
         meta: {
-          level: 2,
-          title: "他山之石-详情"
+          level: 3,
+          title: "他山之石"
         }
       },
       {
